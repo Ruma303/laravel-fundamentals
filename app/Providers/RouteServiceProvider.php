@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
+     * The controller namespace for the application.
+     *
+     * When present, controller route declarations will automatically be prefixed with this namespace.
+     *
+     * @var string|null
+     */
+    protected $namespace = 'App\\Http\\Controllers';
+    /**
      * The path to your application's "home" route.
      *
      * Typically, users are redirected here after authentication.
@@ -30,10 +38,12 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('api')
+                ->namespace($this->namespace)
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
     }
