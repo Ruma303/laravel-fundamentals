@@ -9,30 +9,42 @@
     <title>@yield('title', 'Titolo di default')</title>
 </head>
 {{-- <title>@section('title') Titolo di default @show</title> --}}
-    <body>
-        <header>
-            @include('components.navbar')
-        </header>
-        {{-- @section('header') --}}
-            {{-- <h1>Titolo Header base.blade.php</h1> --}}
-        {{-- @show --}}
-        {{-- @includeIf('components.navbar') --}}
-        {{-- @includeWhen(3 === 3, 'components.navbar') --}}
-        {{-- @includeFirst(['partials._buttonGreen' ,'partials._buttonRed', 'partials._buttonBlue']) --}}
+<body>
+    <header>
+        @include('partials.navbar')
 
-        <div class="container mx-0">
-            <h1>Siamo in base.blade.php</h1>
-            @yield('content')
-        </div>
+        {{-- @includeIf('partials.navbar')
 
+        @includeWhen(5 <= 10, 'partials.navbar')
+
+        @includeFirst([
+            'partials._buttonGreen',
+            'partials._buttonRed',
+            'partials._buttonBlue',
+        ]) --}}
+    </header>
+
+
+    {{-- <div class="container mx-0">
+        <h1>Siamo in base.blade.php</h1>
+        @yield('content')
+    </div> --}}
 
 
 
     {{-- <footer>
         @section('footer')
-        <p>Footer</p>
+        <p>Footer predefinito</p>
         @show
     </footer> --}}
+
+
+    <aside class="p-2">
+        @section('aside')
+            <h1>Aside in base.blade.php</h1>
+        @show
+    </aside>
+
     {{-- @endsection --}}
 
 
