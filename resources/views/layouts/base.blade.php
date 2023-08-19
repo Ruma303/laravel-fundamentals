@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Titolo di default')</title>
+
     @yield('bootstrap')
-    {{-- <title>@section('title') Titolo di default @show</title> --}}
+    <title>@yield('title', 'Titolo di default')</title>
 </head>
+{{-- <title>@section('title') Titolo di default @show</title> --}}
 <body>
 
     <header>
-        @section('header')
+        {{-- @section('header') --}}
             {{-- <h1>Titolo Header base.blade.php</h1> --}}
-        @show
+        {{-- @show --}}
         {{-- @include('components.navbar') --}}
         {{-- @includeIf('components.navbar') --}}
         {{-- @includeWhen(3 === 3, 'components.navbar') --}}
@@ -21,13 +22,12 @@
     </header>
 
 
-{{--
     <div class="container mx-0">
-        <h1>Sono in base.blade.php</h1>
+        <h1>Siamo in base.blade.php</h1>
         @yield('content')
     </div>
 
- --}}
+
 
     {{-- <footer>
         @section('footer')
