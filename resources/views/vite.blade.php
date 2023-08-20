@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{ asset('roma.ico') }}" type="image/x-icon">
     <title>{{ config('app.name', 'My Site') }}</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -13,6 +13,8 @@
         <h1 id="page-title">Laravel + Vite.js Bundler</h1>
     </header>
     <main>
+        <img src="{{ asset('img/pizza-small.png') }}"
+            alt="img/pizza-small.png">
     </main>
 </body>
 </html>
