@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('roma.ico') }}" type="image/x-icon">
-    <title>{{ config('app.name', 'My Site') }}</title>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <title>Laravel + Vite</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <header>
         <h1 id="page-title">Laravel + Vite.js Bundler</h1>
     </header>
     <main>
-        <img src="{{ asset('img/pizza-small.png') }}"
-            alt="img/pizza-small.png">
+        <img alt="img/pizza-small.png">
     </main>
 </body>
 </html>
