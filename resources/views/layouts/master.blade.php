@@ -9,7 +9,10 @@
 </head>
 <body>
     <header>
-        <h1 class="text-center mt-3">Laravel CRUD</h1>
+        <h1 class="text-center mt-3">
+            <a href={{ route('users.index') }}
+            class="text-decoration-none">Laravel CRUD</a>
+        </h1>
     </header>
     <main class="container d-flex flex-column">
         @yield('content')
