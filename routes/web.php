@@ -13,20 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//$ Rotta di base
+
+/* Route::get('/', function (){
+    return view('welcome');
+}); */
+
 
 //$ Rotta che ritorna valori
+/* Route::get('/first-route', function () {
+    return "<h1>Prima rotta</h1>";
+}); */
 
-    /* Route::get('/first-route', function () {
-        return "<h1>Prima rotta</h1>";
-    }); */
-    /* Route::get('/first-route', fn() =>'Ciao'); */
+/* Route::get('/first-route', fn() => '<h1>Ciao</h1>'); */
 
 
 //$ Nominare le rotte
 
-/* Route::get('/first', fn() =>'Prima rotta attivata<br>')->name('first');
-Route::get('/second', fn() => redirect()->route('first'));
- */
+
+/* Route::get('/prima', fn() => 'Prima rotta attivata<br>')->name('first');
+Route::get('/second', fn() => redirect()->route('first')); */
+
 
 
 //% Parametri delle rotte
@@ -137,6 +144,7 @@ Route::get('view', [App\Http\Controllers\FirstController::class, 'view']); */
 
 
 //$ View Controllers
-/* Route::get('home', [App\Http\Controllers\PageController::class, 'home']);
+/*
+Route::get('home', [App\Http\Controllers\PageController::class, 'home']);
 Route::get('about', [App\Http\Controllers\PageController::class, 'about']);
 Route::get('contacts', [App\Http\Controllers\PageController::class, 'contacts']); */
