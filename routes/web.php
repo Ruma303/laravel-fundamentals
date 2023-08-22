@@ -142,4 +142,19 @@ Route::get('view', [App\Http\Controllers\FirstController::class, 'view']); */
 /*
 Route::get('home', [App\Http\Controllers\PageController::class, 'home']);
 Route::get('about', [App\Http\Controllers\PageController::class, 'about']);
-Route::get('contacts', [App\Http\Controllers\PageController::class, 'contacts']); */
+Route::get('contacts', [App\Http\Controllers\PageController::class, 'contacts']);
+*/
+
+
+//% Raggruppare le rotte
+
+    use App\Http\Controllers\Admin\AdminController;
+    //Route::group(['prefix' => 'admin'], function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('dashboard', [AdminController::class, 'dashboard'])
+            ->name('admin.dashboard');
+        Route::get('staff', [AdminController::class, 'staff'])
+            ->name('admin.staff');
+        Route::get('customers', [AdminController::class, 'customers'])
+            ->name('admin.customers');
+    });
