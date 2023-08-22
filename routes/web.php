@@ -44,25 +44,21 @@ Route::get('/second', fn() => redirect()->route('first')); */
 
 
 //$ Ritornare il parametro rotta
-
 /* Route::get('/second-route/{id}', function ($id) {
-    return "<h1>Seconda rotta, con parametro $id</h1>";
+    return "<h1>Seconda rotta, con parametro \$id: $id</h1>";
 }); */
 
 
 //$ Ritornare più parametri
-
 /* Route::get('/third-route/{id}/user/{username}', function ($id, $username) {
     return "<h1>Terza rotta, con parametro $id dell'utente $username</h1>";
 }); */
 
 
 //$ Parametri vincolati
-/*
-Route::get('/articoli/{id}', function ($id) {
+/* Route::get('/articoli/{id}', function ($id) {
     return 'Articolo numero: ' . $id;
-})->where('id', '[0-9]+');
- */
+})->where('id', '[\w-]+'); */
 
 
 
@@ -79,8 +75,8 @@ Route::get('/articoli/{id}', function ($id) {
 
 /* Route::get('/articoli/{id?}', function ($id) {
     return 'Articolo numero: ' . $id;
-})->where('id', '[0-9]+'); */
-
+})->where('id', '[0-9]+');
+ */
 
 /* Route::get('/articoli/{id?}', function ($id = null) {
     if($id) {
@@ -103,15 +99,14 @@ Route::get('/articoli/{id}', function ($id) {
 
 
 
-
 //% Rotte che ritornano delle view
 
 // $ Rotta che ritorna una view
 
 /* Route::get('/', function () {
     return view('welcome');
-});
- */
+}); */
+
 
 
 //$ Inserire dei dati in una view
@@ -122,8 +117,8 @@ Route::get('/articoli/{id}', function ($id) {
         'age' => 28,
         'link' => 'https://www.google.it/'
     ]);
-}); */
-
+});
+ */
 
 
 //$ Ritornare un parametro in una view

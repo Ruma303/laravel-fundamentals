@@ -1,10 +1,8 @@
 {{-- Mi chiamo <?php echo $name ?> e ho <?php echo $age ?> anni.
-<a href="<?php $link ?>">Link per Google</a>
- --}}
+<a href="<?php $link ?>">Link per Google</a> --}}
 
 
-
-{{--  Articolo numero: <?php echo $id ?><br>
+{{-- Articolo numero: <?php echo $id ?><br>
 Categoria: <?php echo $categoria ?><br>
 
 <ul>
@@ -15,4 +13,5 @@ Categoria: <?php echo $categoria ?><br>
 </ul> --}}
 
 {{-- <h3>Sei nella vista app.blade.php</h3>
-<?php echo $saluta ?> --}}
+<?php echo $saluta ?>
+ --}}
