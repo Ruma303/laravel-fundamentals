@@ -38,7 +38,7 @@
                     class="text-white text-decoration-none">
                     <button class="btn btn-warning">
                         Edit
-                    </button>
+                </button>
                 </a>
             </td>
             <td>
