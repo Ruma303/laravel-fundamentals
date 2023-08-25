@@ -28,9 +28,8 @@ linea  --}}
 
 
 {{-- $ Escape codice JavaScript --}}
-
-{{-- {{ $script }}
-<?php echo htmlentities($script); ?> --}}
+{{-- {{ $script }} --}}
+{{-- <?php echo htmlentities($script); ?> --}}
 
 {{-- ! Codice JavaScript Eseguito --}}
 {{-- {!! $script !!} --}}
@@ -38,20 +37,16 @@ linea  --}}
 
 
 {{-- $ Ignorare l'interpolazione --}}
-{{-- @{{ $name }} --}}
+{{-- @{{ $name }} : {{ $name }} --}}
 
 {{-- $ Creare Variabili --}}
 {{-- {{ $x = 5 }} {{ $x }} --}}
 
 
 
-
-
-
 {{-- % Direttive Blade --}}
 
 {{-- $ @php --}}
-
 {{-- @php
     $x = 5;
     $y = 2;
@@ -97,9 +92,9 @@ linea  --}}
 
 {{-- @if ($age >= 18)
     <p>Sei maggiorenne</p>
-@endif
+@endif --}}
 
-@unless ($age >= 18)
+{{-- @unless ($age <= 18)
     <p>Sei minorenne</p>
 @endunless --}}
 
@@ -118,7 +113,8 @@ linea  --}}
 @while ($i < count($items))
     <p>{{ $items[$i] }}</p>
     @php $i++; @endphp
-@endwhile --}}
+@endwhile
+ --}}
 
 
 
@@ -132,21 +128,21 @@ linea  --}}
 
 {{-- $ loop --}}
 {{-- <ul>
+    @foreach ($items as $item)
+    <li>Indice: {{ $loop->index }}</li>
+    <li>Iterazione numero: {{ $loop->iteration }}</li>
+    <li>Iterazioni rimanenti: {{ $loop->remaining }}</li>
+    <li>Num totale: {{ $loop->count }}</li>
+    <li>Prima iterazione: {{ $loop->first }}</li>
+    <li>Ultima iterazione: {{ $loop->last }}</li>
+    <li>Iterazione Pari: {{ $loop->even }}</li>
+    <li>Iterazione Dispari: {{ $loop->odd }}</li>
         @foreach ($items as $item)
-        <li>Indice: {{ $loop->index }}</li>
-        <li>Iterazione numero: {{ $loop->iteration }}</li>
-        <li>Iterazioni rimanenti: {{ $loop->remaining }}</li>
-        <li>Num totale: {{ $loop->count }}</li>
-        <li>Prima iterazione: {{ $loop->first }}</li>
-        <li>Ultima iterazione: {{ $loop->last }}</li>
-        <li>Iterazione Pari: {{ $loop->even }}</li>
-        <li>Iterazione Dispari: {{ $loop->odd }}</li>
-            @foreach ($items as $item)
-            <li>Ti trovi nel ciclo interno: {{ $loop->depth }}</li>
-            @endforeach
-            <li>Ti trovi nel ciclo esterno: {{ $loop->parent }}</li>
+        <li>Ti trovi nel ciclo interno: {{ $loop->depth }}</li>
         @endforeach
-    </ul> --}}
+        <li>Ti trovi nel ciclo esterno: {{ $loop->parent }}</li>
+    @endforeach
+</ul> --}}
 
 
 {{-- $ @each --}}
@@ -162,8 +158,6 @@ linea  --}}
 
 
 
-
-
 {{-- % Ereditarietà --}}
 
 {{-- $ @extends --}}
@@ -171,11 +165,12 @@ linea  --}}
 {{-- @extends('layouts.base') --}}
 
 {{-- $ @section --}}
+{{-- @section('title', 'Blade Tutorial') --}}
+
 {{-- @section('content')
     <h3>Siamo in app.blade.php</h3>
 @endsection
  --}}
-{{-- @section('title', 'Blade Tutorial') --}}
 
 {{-- @section('bootstrap')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
