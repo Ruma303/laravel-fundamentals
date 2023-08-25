@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Account;
+use App\Models\Detail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,34 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+//$ Recuperare tutti i records
+//* Accedere a tutti i record di accounts
+Route::get('accounts', function() {
+    $accounts = Account::all();
+    dd($accounts);
+});
+//* Accedere a tutti i record di details
+Route::get('details', function() {
+    $details = Detail::all();
+    dd($details);
+});
+
+//$ Route Model Binding
+//* Accedere alla proprietà detail del singolo record account
+Route::get('accounts/{account}', function(Account $account) {
+    $detail = $account->detail;
+        dd($detail);
+});
+//* Accedere alla proprietà account del singolo record detail
+Route::get('details/{detail}', function(Detail $detail) {
+    $account = $detail->account;
+    dd($account);
+});
+
+//$ find() e abort()
+Route::get('find/{id}', function($id) {
+    $account = Account::find($id);
+    $account ? dd($account) : abort('404');
 });
