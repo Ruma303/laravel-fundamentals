@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//% Relazioni One to One
+
 //$ Recuperare tutti i records
 //* Accedere a tutti i record di accounts
 Route::get('accounts', function() {
@@ -48,3 +51,6 @@ Route::get('find/{id}', function($id) {
     $account = Account::find($id);
     $account ? dd($account) : abort('404');
 });
+
+
+//% Relazioni One to Many / Many to One
