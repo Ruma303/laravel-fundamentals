@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Account;
+use App\Models\Post;
 use App\Models\Detail;
+use App\Models\Account;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,33 +25,66 @@ Route::get('/', function () {
 
 //$ Recuperare tutti i records
 //* Accedere a tutti i record di accounts
-Route::get('accounts', function() {
+/* Route::get('accounts', function() {
     $accounts = Account::all();
     dd($accounts);
-});
+}); */
 //* Accedere a tutti i record di details
-Route::get('details', function() {
+/* Route::get('details', function() {
     $details = Detail::all();
     dd($details);
-});
+}); */
 
 //$ Route Model Binding
 //* Accedere alla proprietà detail del singolo record account
-Route::get('accounts/{account}', function(Account $account) {
+/* Route::get('accounts/{account}', function(Account $account) {
     $detail = $account->detail;
-        dd($detail);
-});
+    dd($detail);
+}); */
 //* Accedere alla proprietà account del singolo record detail
-Route::get('details/{detail}', function(Detail $detail) {
+/* Route::get('details/{detail}', function(Detail $detail) {
     $account = $detail->account;
     dd($account);
-});
+}); */
 
 //$ find() e abort()
-Route::get('find/{id}', function($id) {
+/* Route::get('find/{id}', function($id) {
     $account = Account::find($id);
     $account ? dd($account) : abort('404');
-});
+}); */
+
 
 
 //% Relazioni One to Many / Many to One
+
+//* Mostrare tutti i post con i dettagli dell'account collegato
+/* Route::get('posts', function() {
+    $posts = Post::with('account')->get();
+    foreach ($posts as $index => $post) {
+        echo "Autore " . ($index + 1) .": "
+        . $post->account->name .  "Titolo: " . $post->title  . "<br>";
+    }
+}); */
+
+//* Mostrare tutti gli account con i titoli dei loro post
+/* Route::get('accounts', function() {
+    $accounts = Account::with('posts')->get();
+    foreach ($accounts as $account) {
+        echo "<h3>" . $account->name . "</h3><ul>";
+        foreach ($account->posts as $post) {
+            echo "<li>Post: " . $post->title . "</li>";
+        }
+        echo "</ul><hr>";
+    }
+}); */
+
+//* Mostrare un account specifico e i suoi post
+/* Route::get('accounts/{account}', function(Account $account) {
+    echo "<h1>" . $account->name . "</h1><ol>";
+    $posts = $account->posts;
+    foreach ($posts as $id => $post) {
+        echo "<li>Post " . ($id + 1) . ": "
+        . $post->title . "</li>";
+    }
+    echo "</ol>";
+}); */
