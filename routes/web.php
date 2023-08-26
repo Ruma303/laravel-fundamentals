@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Detail;
 use App\Models\Account;
@@ -88,3 +89,22 @@ Route::get('/', function () {
     }
     echo "</ol>";
 }); */
+
+
+//% Relazioni Many to Many
+
+//* Mostrare tutti i tags
+/* Route::get('tags', function() {
+    $tags = Tag::all();
+    return view('tags', ['tags' => $tags]);
+});
+
+//* Mostrare i tag di un post
+use App\Http\Controllers\PostController;
+Route::get('posts/{post}', [PostController::class, 'show']);
+
+//* Associare tag a un post
+Route::get('attach/{post}/{tag}', [PostController::class, 'attach']);
+
+//* Rimuovere tag da un post
+Route::get('detach/{post}/{tag}', [PostController::class, 'detach']); */

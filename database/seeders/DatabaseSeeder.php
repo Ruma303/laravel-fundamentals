@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use Database\Seeders\TagSeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\PostSeeder;
 use Database\Seeders\DetailSeeder;
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AccountSeeder::class,
             DetailSeeder::class,
+            TagSeeder::class,
             PostSeeder::class,
         ]);
     }
