@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
+    protected $fillable = [
+        'title',
+        'body'
+    ];
     use HasFactory;
     public function account(): BelongsTo
     {

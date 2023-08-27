@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function getPostsWithAccount()
+    {
+        $posts = Post::has('account')->get();
+        return response()->json($posts);
+    }
+
+
     public function show(Post $post) {
         return view('post')->withPost($post);
     }

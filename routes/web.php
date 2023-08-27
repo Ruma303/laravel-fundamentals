@@ -4,6 +4,7 @@ use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Detail;
 use App\Models\Account;
+//use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,6 +90,19 @@ Route::get('/', function () {
     }
     echo "</ol>";
 }); */
+
+
+//* associate()
+use App\Http\Controllers\AccountController;
+Route::get('associate/{id}', [AccountController::class, 'associate']);
+
+//* dissociate()
+Route::get('dissociate/{id}', [AccountController::class, 'dissociate']);
+
+//* Mostrare solo Post con account
+    use App\Http\Controllers\PostController;
+    Route::get('posts/with-account', [PostController::class, 'getPostsWithAccount']);
+
 
 
 //% Relazioni Many to Many
