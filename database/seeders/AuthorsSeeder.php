@@ -15,7 +15,7 @@ class AuthorsSeeder extends Seeder
      */
     public function run(): void
     {
-         //% DB
+        //% DB
         /* DB::table('authors')->insert([
             'name' => 'Mario Rossi',
             'created_at' => date(now()),
@@ -37,25 +37,23 @@ class AuthorsSeeder extends Seeder
             $author = new Author();
             $author->name = $authorData['name'];
             $author->save();
-        }*/
+        } */
 
         //% create() pt1
-
         /* foreach($authors as $author) {
             Author::create($author);
         } */
 
 
         //% create() pt2
-
         /* foreach($authors as $author) {
             Author::create([
                 'name' => $author['name'],
                 'created_at' => date(now()),
-                'updated_at' => date(now())
+                'updated_at' => '2010-08-28 17:01:30'
             ]);
-        } */
-
+        }
+        */
 
         //% Factory
 
