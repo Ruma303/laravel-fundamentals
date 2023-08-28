@@ -13,7 +13,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('create_post');
+        $posts = Post::all();
+        dd($posts);
     }
 
     /**
@@ -21,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create_post');
     }
 
     /**
@@ -29,7 +31,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $this->authorize('create_post');
     }
 
     /**
@@ -45,7 +47,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $this->authorize('edit_post');
     }
 
     /**
@@ -53,7 +55,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $this->authorize('edit_post');
     }
 
     /**
@@ -61,6 +63,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('delete_post');
     }
 }

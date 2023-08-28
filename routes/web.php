@@ -47,3 +47,4 @@ Route::middleware('auth')->group(function () {
 
 
 //% Rotte di Autorizzazione
+Route::resource('/posts', \App\Http\Controllers\PostController::class);
