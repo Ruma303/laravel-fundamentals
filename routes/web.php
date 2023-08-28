@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,9 @@ Route::get('/', function () {
 
 //% Laravel Breeze
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,8 +35,15 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-//% Rotte personalizzate
+//% Rotte personalizzate per Autenticazione
+Route::middleware('auth')->group(function () {
+    Route::get('blog', function () {
+        return view('blog');})->name('blog');
+    Route::get('user-data', function () {
+        Auth::user();
+        return response()->json(auth()->user());
+    })->name('user-data');
+});
 
-Route::get('blog', function () {
-    return view('blog');
-})->name('blog');
+
+//% Rotte di Autorizzazione

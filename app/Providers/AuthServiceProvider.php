@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,6 +23,25 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        /**
+         * 1. Creare un post
+         * 2. Editare un post
+         * 3. Eliminare un post
+        */
+
+        //* Creare un post
+        Gate::define('create_post', function ($user) {
+            return $user->is_admin;
+        });
+
+        //* Modificare un post
+        Gate::define('edit_post', function () {
+            return Auth::user()->is_admin;
+        });
+
+        //* Eliminare un post
+        Gate::define('delete_post', function () {
+            return auth()->user()->is_admin;
+        });
     }
 }
