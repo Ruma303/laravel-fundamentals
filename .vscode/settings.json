@@ -11,7 +11,7 @@
                     ]
                 },
                 {
-                    "shouldRunCommands": false, //? Completate le installazioni cambia su true
+                    "shouldRunCommands": true, //? Completate le installazioni cambia su true
                     "restoreTerminals.artificialDelayMilliseconds": 1000,
                     "name": "Vite",
                     "commands": [
