@@ -17,9 +17,16 @@
             <p class="alert alert-success">
                 {{ session('success') }}</p>
         @endif
+
         @if (session('deleted'))
             <p class="alert alert-warning">
                 {{ session('deleted') }}</p>
+        @endif
+
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+            <div class="alert alert-danger">{{ $error }}</div>
+            @endforeach
         @endif
 
         <form class="px-2" enctype="multipart/form-data" method="post" action={{ route('upload') }}> @csrf

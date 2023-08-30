@@ -12,6 +12,9 @@ class FileController extends Controller
     }
 
     public function handle(Request $request) {
+        $request->validate(['file-name' => [
+        'required', 'min:512', 'max:1024', 'mimes:png, jpg, gif']]);
+
         //dd($request->file('file-name'));
 
         //return $request->file('file-name')->store('/');
