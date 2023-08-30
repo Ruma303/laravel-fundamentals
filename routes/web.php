@@ -16,6 +16,7 @@ use App\Http\Controllers\FileController;
 */
 Route::get('/', [FileController::class, 'formView']);
 Route::post('/upload', [FileController::class, 'handle'])->name('upload');
+Route::delete('/delete', [FileController::class, 'deleteFile'])->name('delete');
 
 
 

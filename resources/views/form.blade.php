@@ -17,6 +17,10 @@
             <p class="alert alert-success">
                 {{ session('success') }}</p>
         @endif
+        @if (session('deleted'))
+            <p class="alert alert-warning">
+                {{ session('deleted') }}</p>
+        @endif
 
         <form class="px-2" enctype="multipart/form-data" method="post" action={{ route('upload') }}> @csrf
             <label for="file-upload">Upload File</label>
@@ -24,7 +28,18 @@
             <button type="submit" class="btn btn-primary">Load</button>
         </form>
 
-        <img src="{{ asset('storage/images/pizza-small.png') }}" alt="pizza-small" class="loaded-img">
+        <img src="{{ asset('storage/images/pizza-small.png') }}" alt="pizza-small" class="loaded-img mt-2">
+
+        @php
+        $filePath = 'images/pizza-small.png';
+        @endphp
+        @if (Storage::disk('public')->exists($filePath))
+            <form method="post" action="{{ route('delete') }}" class="mt-2">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete this file</button>
+            </form>
+        @endif
     </div>
 </body>
 
