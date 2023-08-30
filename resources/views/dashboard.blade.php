@@ -14,4 +14,8 @@
             </div>
         </div>
     </div>
+
+    @can('create_post')
+        <button>Azione dell'amministratore</button>
+    @endcan
 </x-app-layout>
