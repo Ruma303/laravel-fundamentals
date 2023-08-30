@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,8 @@ Route::post('/upload', [FileController::class, 'handle'])->name('upload');
 Route::delete('/delete', [FileController::class, 'deleteFile'])->name('delete');
 
 
-
+Route::get('user', [UserController::class, 'user']);
+Route::post('users', [UserController::class, 'store'])->name('user.store');
 
 
 
