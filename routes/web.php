@@ -20,8 +20,9 @@ Route::post('/upload', [FileController::class, 'handle'])->name('upload');
 Route::delete('/delete', [FileController::class, 'deleteFile'])->name('delete');
 
 
-Route::get('user', [UserController::class, 'user']);
+Route::get('users', [UserController::class, 'user']);
 Route::post('users', [UserController::class, 'store'])->name('user.store');
+Route::get('users/{user}', [UserController::class, 'show'])->name('user.show');
 
 
 

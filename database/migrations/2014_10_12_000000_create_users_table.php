@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('original_file_name');
+            $table->string('newFileName');
             $table->string('mime')->nullable();
             $table->string('path');
             $table->string('extension');

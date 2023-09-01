@@ -23,14 +23,19 @@
                 {{ session('deleted') }}</p>
         @endif
 
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-            <div class="alert alert-danger">{{ $error }}</div>
+        @if (Session::has('exists'))
+            <p class="alert alert-waring">
+                {{ Session::get('exists') }}</p>
+        @endif
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">{{ $error }}</div>
             @endforeach
         @endif
 
-        <form class="px-2" enctype="multipart/form-data"
-            method="post" action={{ route('user.store') }}> @csrf
+        <form class="px-2" enctype="multipart/form-data" method="post" action={{ route('user.store') }}>
+            @csrf
             <label for="name">Your name</label>
             <input type="text" id="name" name="name">
             <br>
@@ -39,19 +44,32 @@
             <button type="submit" class="btn btn-primary">Load</button>
         </form>
 
-        <img src="{{ asset('storage/images/pizza-small.png') }}" alt="pizza-small" class="loaded-img mt-2">
 
-        {{-- @php
-        $filePath = 'images/pizza-small.png';
+        @php
+            $files = glob(public_path('storage/uploads/*'));
         @endphp
-        @if (Storage::disk('public')->exists($filePath))
-            <form method="post" action="{{ route('delete') }}" class="mt-2">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete this file</button>
-            </form>
-        @endif --}}
+
+        @if (!empty($files))
+            <ul class="list-unstyled">
+                @foreach ($files as $file)
+                    @php
+                        $url = 'storage/uploads/' . basename($file);
+                    @endphp
+                    <li>
+                        <img src="{{ asset($url) }}" class="loaded-img mt-2">
+
+                        <form method="post" action="{{ route('delete') }}" class="mt-2">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete this file</button>
+                        </form>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+
+
     </div>
+
 </body>
 
 </html>
