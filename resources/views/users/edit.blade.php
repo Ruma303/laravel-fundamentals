@@ -8,8 +8,7 @@
      <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" value="{{ old('name', 'NO username') }}"
-            name="name">
+            <input type="text" class="form-control" id="name" value="{{ old('name', $user->name ) }}" name="name">
         </div>
         <label for="email" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">

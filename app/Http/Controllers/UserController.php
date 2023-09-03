@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact(['users']));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -29,6 +29,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         //$ Creazione nuovo record
         $user = new User();
 
@@ -41,7 +42,9 @@ class UserController extends Controller
         $user->save();
 
         //$ Reindirizzamento verso l'index degli users
-        return redirect('/users');
+        return redirect('/users')->with([
+            'created' => 'User {$user->name} has been created.'
+        ]);
     }
 
     //* Variante store() 1

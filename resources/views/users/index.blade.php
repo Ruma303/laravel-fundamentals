@@ -9,6 +9,9 @@
     @if(session('success'))
         <h3 class="bg-info rounded">{{ session('success') }}</h3>
     @endif
+    @if(session('created'))
+        <h3 class="bg-success rounded text-white">{{ session('created') }}</h3>
+    @endif
 <table>
     <thead>
         <tr>
