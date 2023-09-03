@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('original_file_name');
-            $table->string('newFileName');
+            $table->string('new_file_name');
             $table->string('mime')->nullable();
             $table->string('path');
             $table->string('extension');

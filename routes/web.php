@@ -15,10 +15,6 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [FileController::class, 'formView']);
-Route::post('/upload', [FileController::class, 'handle'])->name('upload');
-Route::delete('/delete', [FileController::class, 'deleteFile'])->name('delete');
-
 
 Route::get('users', [UserController::class, 'user']);
 Route::post('users', [UserController::class, 'store'])->name('user.store');

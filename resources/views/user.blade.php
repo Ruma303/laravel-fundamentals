@@ -24,7 +24,7 @@
         @endif
 
         @if (Session::has('exists'))
-            <p class="alert alert-waring">
+            <p class="alert alert-warning">
                 {{ Session::get('exists') }}</p>
         @endif
 
@@ -34,11 +34,11 @@
             @endforeach
         @endif
 
-        <form class="px-2" enctype="multipart/form-data" method="post" action={{ route('user.store') }}>
+        <form class="px-2" enctype="multipart/form-data"
+            method="post" action={{ route('user.store') }}>
             @csrf
             <label for="name">Your name</label>
             <input type="text" id="name" name="name">
-            <br>
             <label for="file-upload">Upload a file here</label>
             <input type="file" id="file-upload" name="file">
             <button type="submit" class="btn btn-primary">Load</button>
@@ -58,10 +58,10 @@
                     <li>
                         <img src="{{ asset($url) }}" class="loaded-img mt-2">
 
-                        <form method="post" action="{{ route('delete') }}" class="mt-2">
+                        {{-- <form method="post" action="{{ route('delete') }}" class="mt-2">
                             @csrf @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete this file</button>
-                        </form>
+                        </form> --}}
                     </li>
                 @endforeach
             </ul>
