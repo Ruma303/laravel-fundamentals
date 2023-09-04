@@ -54,13 +54,14 @@
             alt="pizza-small" class="mt-2 ms-1"> --}}
 
 
+
         {{-- % Iterare sulle immagini --}}
-        @php
+        {{-- @php
             $files = glob(public_path('storage/uploads/*'));
         @endphp
 
         @if (!empty($files))
-            <ul class="list-unstyled d-flex gap-3">
+            <ul class="list-unstyled d-flex gap-3 flex-wrap">
                 @foreach ($files as $file)
                     @php
                         $url = 'storage/uploads/' . basename($file);
@@ -70,7 +71,36 @@
                     </li>
                 @endforeach
             </ul>
+        @endif --}}
+
+
+        {{-- , Acquisire dati dal DB --}}
+
+        {{-- * Flash message --}}
+        @if (session('registered'))
+            <p class="alert alert-success">
+                {{ session('registered') }}</p>
         @endif
+
+        {{-- * Iterare sui records --}}
+        @php
+            $files = glob(public_path('storage/uploads/*'));
+        @endphp
+
+        @if (!empty($users))
+            <ul class="list-unstyled d-flex gap-3 flex-wrap text-center">
+                @foreach ($users as $user)
+                    @php
+                        $url = 'storage/uploads/' . basename($user->new_file_name);
+                    @endphp
+                    <li>
+                        <img src="{{ asset($url) }}" class="loaded-img mt-2">
+                        <p>{{ $user->name }}</p>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+
 
         {{-- <form method="post" action="{{ route('user.destroy'), ['user' => $user] }}" class="mt-2">
                     @csrf @method('DELETE')

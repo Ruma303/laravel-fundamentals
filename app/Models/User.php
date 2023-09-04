@@ -19,7 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'new_file_name'
+        'original_file_name',
+        'new_file_name',
+        'mime',
+        'path',
+        'extension',
     ];
 
     /**

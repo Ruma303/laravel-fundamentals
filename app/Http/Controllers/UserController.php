@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function user()
-    {
-        return view('user');
+    public function user() {
+        //return view('user');
+        $users = User::all();
+        return view('user', compact('users'));
     }
 
     public function store(Request $request)
@@ -169,7 +170,7 @@ class UserController extends Controller
 
         //% Mostrare più file caricati
 
-        if ($request->hasFile('file')) {
+        /* if ($request->hasFile('file')) {
             $file = $request->file('file');
             $originalFileName = $file->getClientOriginalName();
             $randomName = time() . '_' .Str::random(12);
@@ -185,46 +186,48 @@ class UserController extends Controller
                 return back()->with('exists',
                 'Il file ' . $originalFileName . ' è già presente.');
             }
-        }
+        } */
 
 
         //# Fase 5: Persistenza nel database
 
-        //* Generare nome file unico
 
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
 
+            //* Acquisizione info file e generazione nuova stringa
+            $originalFileName = $file->getClientOriginalName();
+            $randomName = hash('sha256', $file->getRealPath()); //* Hash percorso
+            //dd($randomName);
+            $mime = $file->getClientMimeType();
+            $path = 'uploads';
+            $extension = $file->guessExtension();
+            $newFileName = $randomName . '.' . $extension;
 
-        /* // Salva i dettagli del file nel database
-        $user = User::find($userId); // Sostituisci $userId con l'ID dell'utente corrente
-        $user->original_file_name = $originalFileName;
-        $user->new_file_name = $newFileName;
-        $user->mime = $mime;
-        $user->path = $path;
-        $user->extension = $extension;
-        $user->save();
-         */
+            if (!Storage::disk('public')->exists($path . '/' . $newFileName)) {
 
+                //, Salvataggio file nel filesystem
+                $file->storeAs('uploads', $newFileName, 'public');
 
+                //, Persistenza dati nel Database
+                $newUser = new User; //* Istanza del nuovo record User nel DB
+                $newUser->name = $request->input('name'); //* Nome utente
+                $newUser->original_file_name = $originalFileName;
+                $newUser->new_file_name = $newFileName;
+                $newUser->mime = $mime;
+                $newUser->path = $path;
+                $newUser->extension = $extension;
+                $newUser->save();
 
-        //* Verifica prima di salvare
+                return redirect('users')->with('registered',
+                'L\'utente ' . $request->input('name'). ' registrato correttamente.');
 
-        /*
-        $newUser = new User; //* Istanza del nuovo record User nel DB
-        $newUser->name = $request->input('name'); //* Nome utente
-
-        //* Tutte le info del file da salvare
-        $newUser->original_file_name = $originalFileName;
-        $newUser->newFileName = $newFileName;
-        $newUser->mime = $mime;
-        $newUser->path = $path;
-        $newUser->extension = $extension;
-
-        $newUser->save();
-
-        //session(['file' => $newFileName]);
-
-        return redirect('users')->with('success', 'Il file è stato caricato correttamente.'); */
-
+            } else {
+                return back()->with('exists',
+                'Errore. L\'utente ' . $request->input('name') . ' non è stato registrato<br>' .
+                'Il file ' . $originalFileName . ' è già presente.');
+            }
+        }
 
     }
 
