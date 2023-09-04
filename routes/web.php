@@ -19,6 +19,7 @@ use App\Http\Controllers\UserController;
 Route::get('users', [UserController::class, 'user']);
 Route::post('users', [UserController::class, 'store'])->name('user.store');
 Route::get('users/{user}', [UserController::class, 'show'])->name('user.show');
+Route::delete('users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
 
 

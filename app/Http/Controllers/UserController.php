@@ -151,24 +151,47 @@ class UserController extends Controller
         'Il file ' . $file->getClientOriginalName() . ' stato caricato correttamente.'); */
 
 
-        //Storage::putFileAs('uploads', $file, $newFileName);
+        //% Mostrare il singolo file archiviato
+
+        /* if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $originalFileName = $file->getClientOriginalName();
+
+            if (!Storage::disk('public')->exists('uploads/' . $originalFileName)) {
+                $file->storeAs('uploads', $originalFileName);
+                return redirect('users')->with('success', 'Il file ' . $originalFileName . '  stato caricato correttamente.');
+
+            } else {
+                return back()->with('exists', 'Il file ' . $originalFileName . ' è già presente.');
+            }
+        } */
 
 
-        /*  $path = $file->storeAs('uploads', $newFileName, 'public');
-         dd($path); */
+        //% Mostrare più file caricati
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $originalFileName = $file->getClientOriginalName();
+            $randomName = time() . '_' .Str::random(12);
+            $extension = $file->getClientOriginalExtension();
+            $newFileName = $randomName . '.' . $extension;
+
+            if (!Storage::disk('public')->exists('uploads/' . $newFileName)) {
+                $file->storeAs('uploads', $newFileName);
+                return redirect('users')->with('success',
+                'Il file ' . $originalFileName . '  stato caricato correttamente.');
+
+            } else {
+                return back()->with('exists',
+                'Il file ' . $originalFileName . ' è già presente.');
+            }
+        }
 
 
         //# Fase 5: Persistenza nel database
 
         //* Generare nome file unico
 
-        /* $file = $request->file('file');
-        $randomName = time() . '_' .Str::random(12);
-        $extension = $file->getClientOriginalExtension();
-        $newFileName = $randomName . '.' . $extension;
-        //$originalName = $file->getClientOriginalName();
-        //dd($newFileName);
-        */
 
 
         /* // Salva i dettagli del file nel database
@@ -209,7 +232,10 @@ class UserController extends Controller
     //% Copiare file
 
 
-    //% Sostituire file
+    //% Spostare il file
+
+
+    //% Download
 
 
     //% Eliminare file

@@ -34,8 +34,7 @@
             @endforeach
         @endif
 
-        <form class="px-2" enctype="multipart/form-data"
-            method="post" action={{ route('user.store') }}>
+        <form class="px-2" enctype="multipart/form-data" method="post" action={{ route('user.store') }}>
             @csrf
             <label for="name">Your name</label>
             <input type="text" id="name" name="name">
@@ -44,29 +43,39 @@
             <button type="submit" class="btn btn-primary">Load</button>
         </form>
 
+        {{-- % Mostrare l'immagine caricata --}}
 
+        {{-- . Percorso errato --}}
+        {{-- <img src="{{ asset('storage/app/public/uploads/pizza-small.png') }}"
+            alt="pizza-small" class="mt-2 ms-1"> --}}
+
+        {{-- * Percorso corretto --}}
+        {{-- <img src="{{ asset('storage/uploads/pizza-small.png') }}"
+            alt="pizza-small" class="mt-2 ms-1"> --}}
+
+
+        {{-- % Iterare sulle immagini --}}
         @php
             $files = glob(public_path('storage/uploads/*'));
         @endphp
 
         @if (!empty($files))
-            <ul class="list-unstyled">
+            <ul class="list-unstyled d-flex gap-3">
                 @foreach ($files as $file)
                     @php
                         $url = 'storage/uploads/' . basename($file);
                     @endphp
                     <li>
                         <img src="{{ asset($url) }}" class="loaded-img mt-2">
-
-                        {{-- <form method="post" action="{{ route('delete') }}" class="mt-2">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete this file</button>
-                        </form> --}}
                     </li>
                 @endforeach
             </ul>
         @endif
 
+        {{-- <form method="post" action="{{ route('user.destroy'), ['user' => $user] }}" class="mt-2">
+                    @csrf @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete this file</button>
+                </form> --}}
 
     </div>
 
