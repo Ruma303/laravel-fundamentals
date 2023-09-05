@@ -23,7 +23,9 @@ Route::get('/', function () {
 //% Laravel Breeze
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', [
+        /* 'adminInfo' => 'Info disponibili solo per l\'amministratore.' */
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
