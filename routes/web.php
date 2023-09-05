@@ -30,49 +30,56 @@ Route::get('/', function () {
 /* Route::get('accounts', function() {
     $accounts = Account::all();
     dd($accounts);
-}); */
+});
+ */
+
 //* Accedere a tutti i record di details
 /* Route::get('details', function() {
     $details = Detail::all();
     dd($details);
 }); */
 
-//$ Route Model Binding
+
+//| Route Model Binding
 //* Accedere alla proprietà detail del singolo record account
 /* Route::get('accounts/{account}', function(Account $account) {
-    $detail = $account->detail;
-    dd($detail);
+    dd($account);
 }); */
+
+
 //* Accedere alla proprietà account del singolo record detail
 /* Route::get('details/{detail}', function(Detail $detail) {
-    $account = $detail->account;
-    dd($account);
+    dd($detail);
 }); */
 
 //$ find() e abort()
 /* Route::get('find/{id}', function($id) {
     $account = Account::find($id);
     $account ? dd($account) : abort('404');
-}); */
-
+});
+ */
 
 
 //% Relazioni One to Many / Many to One
 
 //* Mostrare tutti i post con i dettagli dell'account collegato
 /* Route::get('posts', function() {
+    //$posts = Post::account()->get();
     $posts = Post::with('account')->get();
     foreach ($posts as $index => $post) {
         echo "Autore " . ($index + 1) .": "
-        . $post->account->name .  "Titolo: " . $post->title  . "<br>";
+        . $post->account->name .  "<br>Titolo: " . $post->title  . "<br>";
     }
 }); */
 
 //* Mostrare tutti gli account con i titoli dei loro post
 /* Route::get('accounts', function() {
+    //$accounts = Account::posts()->get();
     $accounts = Account::with('posts')->get();
+
     foreach ($accounts as $account) {
         echo "<h3>" . $account->name . "</h3><ul>";
+
         foreach ($account->posts as $post) {
             echo "<li>Post: " . $post->title . "</li>";
         }
@@ -93,22 +100,22 @@ Route::get('/', function () {
 
 
 //* associate()
-use App\Http\Controllers\AccountController;
+/* use App\Http\Controllers\AccountController;
 Route::get('associate/{id}', [AccountController::class, 'associate']);
 
 //* dissociate()
 Route::get('dissociate/{id}', [AccountController::class, 'dissociate']);
 
 //* Mostrare solo Post con account
-    use App\Http\Controllers\PostController;
-    Route::get('posts/with-account', [PostController::class, 'getPostsWithAccount']);
+use App\Http\Controllers\PostController;
+Route::get('posts/with-account', [PostController::class, 'getPostsWithAccount']); */
 
 
 
 //% Relazioni Many to Many
 
 //* Mostrare tutti i tags
-/* Route::get('tags', function() {
+Route::get('tags', function() {
     $tags = Tag::all();
     return view('tags', ['tags' => $tags]);
 });
@@ -121,4 +128,4 @@ Route::get('posts/{post}', [PostController::class, 'show']);
 Route::get('attach/{post}/{tag}', [PostController::class, 'attach']);
 
 //* Rimuovere tag da un post
-Route::get('detach/{post}/{tag}', [PostController::class, 'detach']); */
+Route::get('detach/{post}/{tag}', [PostController::class, 'detach']);

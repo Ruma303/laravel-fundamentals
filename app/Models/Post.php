@@ -14,11 +14,13 @@ class Post extends Model
         'title',
         'body'
     ];
+
     use HasFactory;
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
     }
+
     public function tags() : BelongsToMany
     {
         return $this->belongsToMany(Tag::class);

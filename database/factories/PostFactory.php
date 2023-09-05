@@ -19,6 +19,7 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+        //One to many
         return [
             'account_id' => function () {
                 if (Account::count() === 0) {
@@ -30,6 +31,8 @@ class PostFactory extends Factory
             'body' => $this->faker->paragraph,
         ];
     }
+
+    //Many to many
     public function configure()
     {
         return $this->afterCreating(function (Post $post) {

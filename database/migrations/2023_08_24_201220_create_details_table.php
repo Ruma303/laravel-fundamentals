@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('details', function (Blueprint $table) {
             $table->id();
             $table->text('description')->nullable();
+
             //* Versione 1
             $table->unsignedBigInteger('account_id');
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
+
             //* Versione 2
             //$table->foreignId('account_id')->constrained()->onDelete('no action');
             $table->timestamps();

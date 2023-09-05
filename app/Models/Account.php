@@ -16,6 +16,7 @@ class Account extends Model
     {
         return $this->hasOne(Detail::class);
     }
+
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);

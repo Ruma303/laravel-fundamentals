@@ -14,13 +14,18 @@ class AccountController extends Controller
         if (!$account) { //! Se non esiste l'Account, lancia errore.
             return response()->json(['message' => "Errore: Account non trovato con id: $id"]);
         }
+
         $existingPost = Post::where('title', 'Nuovo Post')->where('account_id', $account->id)->first();
+
         if ($existingPost) { //! Se esiste già un Post associato, lancia errore.
             return response()->json(['message' => "Errore: Post già associato all'account con id: $id"]);
-        } //* Crea e associa nuovo Post ad Account
+
+        }
+        //* Crea e associa nuovo Post ad Account
         $post = new Post(['title' => 'Nuovo Post', 'body' => 'Testo di prova.']);
         $post->account()->associate($account);
         $post->save();
+
         return response()->json(['message' => "Nuovo Post associato all'account con id: $id"]);
     }
 
