@@ -22,9 +22,9 @@ Route::get('/', function () {
 
 //% Laravel Breeze
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,4 +47,5 @@ Route::middleware('auth')->group(function () {
 
 
 //% Rotte di Autorizzazione
-Route::resource('/posts', \App\Http\Controllers\PostController::class);
+    use App\Http\Controllers\UserController;
+    Route::get('users', [UserController::class, 'index']);

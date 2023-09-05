@@ -23,13 +23,31 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+        //, Permessi per l'amministratore
+
+        Gate::define('admin', function ($user) {
+            return Auth::user()->is_admin;
+            //return auth()->user()->is_admin;
+            //return $user->is_admin;
+        });
+
+
+
+
+
+
+
+
+
+        //% Permessi per una CRUD
         /**
          * 1. Creare un post
          * 2. Editare un post
          * 3. Eliminare un post
         */
 
-        //* Creare un post
+        /* //* Creare un post
         Gate::define('create_post', function ($user) {
             return $user->is_admin;
         });
@@ -42,6 +60,6 @@ class AuthServiceProvider extends ServiceProvider
         //* Eliminare un post
         Gate::define('delete_post', function () {
             return auth()->user()->is_admin;
-        });
+        }); */
     }
 }
