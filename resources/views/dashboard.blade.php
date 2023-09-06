@@ -3,26 +3,26 @@
         {{-- Contenuto visibile solo agli admin --}}
         {{-- @can('admin', $adminInfo) --}}
         @can('admin')
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Admin Dashboard</h2>
-                <p class="text-lg py-3">Contenuto visibile soltanto dall'admin.</p>
-                {{-- <p class="text-lg py-3">{{ $adminInfo }}</p> --}}
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Admin Dashboard</h2>
+            <p class="text-lg py-3">Contenuto visibile soltanto dall'admin.</p>
+            {{-- <p class="text-lg py-3">{{ $adminInfo }}</p> --}}
             <button class="rounded-full bg-sky-700 px-2 py-1 text-white hover:bg-emerald-600">
                 Azione admin</button>
-
-        {{-- Contenuto visibile ad utenti non admin --}}
-        {{-- @elseif('vice')
+        {{-- Contenuto visibile ad utenti con gate diversi da admin --}}
+        {{-- @elsecan('vice')
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Vice Dashboard</h2>
-        @elseif('tecnici')
+        @elsecan('tecnici')
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Technical staff Dashboard</h2>
-        @elseif('impiegati')
+        @elsecan('impiegati')
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Employee Dashboard</h2> --}}
-        {{-- @else
+        {{-- Contenuto visible ad utenti registrati senza gate --}}
+        @else
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                User Dashboard</h2> --}}
+                User Dashboard</h2>
         @endcan
     </x-slot>
 

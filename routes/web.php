@@ -49,5 +49,5 @@ Route::middleware('auth')->group(function () {
 
 
 //% Rotte di Autorizzazione
-    use App\Http\Controllers\UserController;
-    Route::get('users', [UserController::class, 'index']);
+use App\Http\Controllers\UserController;
+Route::get('users', [UserController::class, 'index']);
