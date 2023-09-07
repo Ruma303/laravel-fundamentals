@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+    use App\Http\Controllers\Api\V1\MovieController;
+    Route::apiResource('movies', MovieController::class);
+
+    /* Route::get('movies', [MovieController::class, 'index']);
+    Route::get('movies/{movie}', [MovieController::class, 'show']); */
+
+
+Route::prefix('v1')->group(function () {
+    Route::apiResource('movies', MovieController::class);
+});
