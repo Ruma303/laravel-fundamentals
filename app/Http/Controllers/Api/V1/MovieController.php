@@ -11,7 +11,7 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::all();
-        return $movies;
+        return response()->json($movies, 200);
     }
 
     public function store(Request $request)

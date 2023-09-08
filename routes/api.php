@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\MovieController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-    use App\Http\Controllers\Api\V1\MovieController;
-    Route::apiResource('movies', MovieController::class);
+//Route::apiResource('movies', MovieController::class);
 
-    /* Route::get('movies', [MovieController::class, 'index']);
-    Route::get('movies/{movie}', [MovieController::class, 'show']); */
+/* Route::get('movies', [MovieController::class, 'index']);
+Route::get('movies/{movie}', [MovieController::class, 'show']); */
 
 
 Route::prefix('v1')->group(function () {
