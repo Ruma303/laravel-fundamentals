@@ -27,25 +27,25 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //dd($request);
-        //$ Creazione nuovo record
-        $user = new User();
+    /*  public function store(Request $request)
+     {
+         //dd($request);
+         //$ Creazione nuovo record
+         $user = new User();
 
-        //$ Assegnazione dati ai singoli campi
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = $request->input('password');
+         //$ Assegnazione dati ai singoli campi
+         $user->name = $request->input('name');
+         $user->email = $request->input('email');
+         $user->password = $request->input('password');
 
-        //$ Salvataggio ed invio al database del nuovo record
-        $user->save();
+         //$ Salvataggio ed invio al database del nuovo record
+         $user->save();
 
-        //$ Reindirizzamento verso l'index degli users
-        return redirect('/users')->with([
-            'created' => 'User {$user->name} has been created.'
-        ]);
-    }
+         //$ Reindirizzamento verso l'index degli users
+         return redirect('/users')->with([
+             'created' => 'User {$user->name} has been created.'
+         ]);
+     } */
 
     //* Variante store() 1
     /* public function store(Request $request)
@@ -78,6 +78,41 @@ class UserController extends Controller
         return redirect('/users');
     } */
 
+    //% Mass assignment create()
+    /* public function store(Request $request)
+    {
+        //* Creazione del nuovo utente utilizzando il mass assignment
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        //* Reindirizzamento verso l'index degli users
+        return redirect('/users')->with([
+            'created' => "User {$user->name} has been created."
+        ]);
+    }*/
+
+
+    //% Creare record con fill()
+    public function store(Request $request)
+    {
+        //* Creazione utente con fill()
+        $user = new User;
+        $user->fill([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+        $user->save();
+
+        //* Reindirizzamento alla vista index con i dati aggiornati
+        return redirect('/users')->with([
+            'created' => "User {$user->name} has been created."
+        ]);
+    }
+
     /**
      * Display the specified resource.
      */
@@ -97,7 +132,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    /* public function update(Request $request, User $user)
     {
         //$ Sostituzione dei nuovi dati nell'istanza $user
         $user->name = $request->input('name');
@@ -110,7 +145,7 @@ class UserController extends Controller
         //$ Reindirizzamento alla vista users.show con i dati aggiornati
         return redirect()->route('users.show', compact('user'));
         //return redirect('users/' . $user->id)->with(compact('user'));
-    }
+    } */
 
     //* Variante update()
     /* public function update(Request $request, User $user)
@@ -126,6 +161,35 @@ class UserController extends Controller
         return redirect()->route('users.show', compact('user'));
     } */
 
+    //% Mass assignment update()
+    /* public function update(Request $request, User $user)
+    {
+        //* Aggiornamento dell'utente utilizzando il mass assignment
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ]);
+
+        //* Reindirizzamento alla vista con i dati aggiornati
+        return redirect()->route('users.show', compact('user'));
+    } */
+
+
+    //% Aggiornare record con fill()
+    public function update(Request $request, User $user)
+    {
+        //* Aggiornamento dell'utente usando fill()
+        $user->fill([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+        $user->save();
+
+        //* Reindirizzamento alla vista dettagli con i dati aggiornati
+        return redirect()->route('users.show', compact('user'));
+    }
 
     /**
      * Remove the specified resource from storage.

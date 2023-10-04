@@ -15,10 +15,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-    ];
-
-    protected $guarded = [
         'password'
     ];
+
+    /* protected $guarded = [
+        'password'
+    ]; */
 
 }
