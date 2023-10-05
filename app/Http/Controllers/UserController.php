@@ -7,45 +7,39 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $users = User::all();
         return view('users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('users.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    /*  public function store(Request $request)
-     {
-         //dd($request);
-         //$ Creazione nuovo record
-         $user = new User();
 
-         //$ Assegnazione dati ai singoli campi
-         $user->name = $request->input('name');
-         $user->email = $request->input('email');
-         $user->password = $request->input('password');
+    /* public function store(Request $request)
+    {
+        //dd($request);
+        //$ Creazione nuovo record
+        $user = new User();
 
-         //$ Salvataggio ed invio al database del nuovo record
-         $user->save();
+        //$ Assegnazione dati ai singoli campi
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
 
-         //$ Reindirizzamento verso l'index degli users
-         return redirect('/users')->with([
-             'created' => 'User {$user->name} has been created.'
-         ]);
-     } */
+        //$ Salvataggio ed invio al database del nuovo record
+        $user->save();
+
+        //$ Reindirizzamento verso l'index degli users
+        return redirect('/users')->with([
+            'created' => 'User {$user->name} has been created.'
+        ]);
+    } */
 
     //* Variante store() 1
     /* public function store(Request $request)
@@ -96,7 +90,7 @@ class UserController extends Controller
 
 
     //% Creare record con fill()
-    public function store(Request $request)
+    /* public function store(Request $request)
     {
         //* Creazione utente con fill()
         $user = new User;
@@ -111,27 +105,62 @@ class UserController extends Controller
         return redirect('/users')->with([
             'created' => "User {$user->name} has been created."
         ]);
+    } */
+
+    //% Validazione
+    public function store(Request $request)
+    {
+        //* Validazione dati in input
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ]);
+        $request->validate([
+            'name' => 'required|min:4|max:255',
+            'email' => 'required|unique:users|min:4|max:100',
+            'password' => 'required|min:4|max:100'
+        ]);
+        dd('Validazione soddisfatta');
+
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string']
+        ]);
+        $request->validate([
+            'name' => ['required', 'min:4','max:255'],
+            'email' => ['required', 'unique:users', 'min:4', 'max:100'],
+            'password' => ['required', 'min:4', 'max:100']
+        ]);
+
+
+        //* Creazione del nuovo utente
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        //* Reindirizzamento verso l'index degli users
+        return redirect('/users')->with([
+            'created' => "User {$user->name} has been created."
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(User $user)
     {
         return view('users.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(User $user)
     {
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     /* public function update(Request $request, User $user)
     {
         //$ Sostituzione dei nuovi dati nell'istanza $user
@@ -191,9 +220,7 @@ class UserController extends Controller
         return redirect()->route('users.show', compact('user'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(User $user)
     {
         $user->delete();
