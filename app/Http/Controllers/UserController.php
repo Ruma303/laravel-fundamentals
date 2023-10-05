@@ -7,6 +7,26 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    private $inputValidations = [
+        'name'      => ['required', 'min:4', 'max:100'],
+        'email'     => ['required', 'unique:users,email', 'min:4', 'max:100'],
+        'password'  => ['required', 'min:4', 'max:100']
+    ];
+
+    private $validationsMessages = [
+        'name.required'     =>  'Il nome è richiesto',
+        'name.min'          =>  'Minimo 4 caratteri',
+        'name.max'          =>  'Massimo 100 caratteri',
+
+        'email.required'    =>  'L\'email è richiesta',
+        'email.unique'      =>  'L\'email dev\'essere unica',
+        'email.min'         =>  'Minimo 4 caratteri',
+        'email.max'         =>  'Massimo 100 caratteri',
+
+        'password.required' =>  'La password è richiesta',
+        'password.min'      =>  'Minimo 4 caratteri',
+        'password.max'      =>  'Massimo 100 caratteri',
+    ];
 
     public function index()
     {
@@ -108,32 +128,52 @@ class UserController extends Controller
     } */
 
     //% Validazione
-    public function store(Request $request)
-    {
+    /* public function store(Request $request)
+    { */
         //* Validazione dati in input
-        $request->validate([
+        /* $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string'
-        ]);
-        $request->validate([
+        ]); */
+        /* $request->validate([
             'name' => 'required|min:4|max:255',
             'email' => 'required|unique:users|min:4|max:100',
             'password' => 'required|min:4|max:100'
         ]);
-        dd('Validazione soddisfatta');
-
-        $request->validate([
+         */
+        /* $request->validate([
             'name' => ['required', 'string'],
             'email' => ['required', 'email'],
             'password' => ['required', 'string']
-        ]);
-        $request->validate([
-            'name' => ['required', 'min:4','max:255'],
-            'email' => ['required', 'unique:users', 'min:4', 'max:100'],
-            'password' => ['required', 'min:4', 'max:100']
-        ]);
+        ]); */
+        /* $request->validate([
+            'name'      => ['required', 'min:4', 'max:100'],
+            'email'     => ['required', 'unique:users,email', 'min:4', 'max:100'],
+            'password'  => ['required', 'min:4', 'max:100']
+        ], [
+            'name.required'     =>  'Il nome è richiesto',
+            'name.min'          =>  'Minimo 4 caratteri',
+            'name.max'          =>  'Massimo 100 caratteri',
 
+            'email.required'    =>  'L\'email è richiesta',
+            'email.unique'      =>  'L\'email dev\'essere unica',
+            'email.min'         =>  'Minimo 4 caratteri',
+            'email.max'         =>  'Massimo 100 caratteri',
+
+            'password.required' =>  'La password è richiesta',
+            'password.min'      =>  'Minimo 4 caratteri',
+            'password.max'      =>  'Massimo 100 caratteri',
+        ]); */
+        //dd('Validazione soddisfatta');
+
+    public function store(Request $request)
+    {
+        //* Validazioni
+        $request->validate(
+            $this->inputValidations,
+            $this->validationsMessages
+        );
 
         //* Creazione del nuovo utente
         $user = User::create([
@@ -208,6 +248,12 @@ class UserController extends Controller
     //% Aggiornare record con fill()
     public function update(Request $request, User $user)
     {
+        //* Validazioni
+        $request->validate(
+            $this->inputValidations,
+            $this->validationsMessages
+        );
+
         //* Aggiornamento dell'utente usando fill()
         $user->fill([
             'name' => $request->input('name'),
