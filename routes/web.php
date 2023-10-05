@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,23 @@ Route::middleware('auth')->group(function () {
 //% Rotte di Autorizzazione
 use App\Http\Controllers\UserController;
 Route::get('users', [UserController::class, 'index']);
+
+Route::get('user', function(Request $request) {
+    //return dd(Auth::user());
+
+    //return dd($request->user());
+
+    //return dd(auth()->user());
+
+    //return response()->json(auth()->user());
+
+    /* dump(Auth::check()); // true
+    return dd(auth()->check()); // true */
+
+    /* dump(Auth::guest()); // false
+    return dd(auth()->guest()); // false */
+
+    /* dump(auth()->id()); // 4
+    return dd(Auth::id()); // 4 */
+
+})/* ->middleware('auth') */;
