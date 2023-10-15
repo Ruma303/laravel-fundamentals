@@ -60,6 +60,7 @@
             @endforeach
 
         </tbody>
-
     </table>
+    {{ $users->links('vendor.pagination.simple-bootstrap-5') }}
+
 @endsection

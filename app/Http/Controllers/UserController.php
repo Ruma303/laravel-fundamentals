@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    //$users = User::all();
 
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         return view('users.index', compact('users'));
     }
 
