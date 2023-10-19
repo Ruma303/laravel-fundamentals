@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -102,13 +103,13 @@ class UserController extends Controller
     //}
 
 
-    public function store(Request $request)
+    //* Validazioni
+    /* $request->validate(
+        $this->inputValidations,
+        $this->validationsMessages
+    ); */
+    public function store(UserRequest $request)
     {
-        //* Validazioni
-        $request->validate(
-            $this->inputValidations,
-            $this->validationsMessages
-        );
         //* Creazione del nuovo utente
         $user = User::create([
             'name' => $request->input('name'),
