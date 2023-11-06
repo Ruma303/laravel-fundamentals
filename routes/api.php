@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Externals;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\MovieController;
@@ -29,3 +30,6 @@ Route::get('movies/{movie}', [MovieController::class, 'show']); */
 Route::prefix('v1')->group(function () {
     Route::apiResource('movies', MovieController::class);
 });
+
+//% External Api
+Route::get('test', [Externals::class, 'index']);
