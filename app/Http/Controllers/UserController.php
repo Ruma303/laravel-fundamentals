@@ -171,4 +171,11 @@ class UserController extends Controller
             'success' => "User {$user->name} has been deleted."
         ]);
     }
+
+
+    public function trash()
+    {
+        $users = User::onlyTrashed()->get();
+        return view('users.trash', compact('users'));
+    }
 }

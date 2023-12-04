@@ -1,27 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'Users index')
+@section('title', 'Thrashed')
 
 @section('content')
-
-    <div class="d-flex gap-2">
-        <button class="btn btn-success" style="width: fit-content;">
-            <a href="{{ route('users.create') }}" class="text-decoration-none text-white">Create a new user</a>
-        </button>
-        <button class="btn btn-warning" style="width: fit-content;">
-            <a href="{{ route('user.trash') }}" class="text-decoration-none text-black">Thrashed</a>
-        </button>
-    </div>
-
-    <h1>Index Page</h1>
-    @if (session('success'))
-        <h3 class="bg-info rounded">{{ session('success') }}</h3>
-    @endif
-
-    @if (session('created'))
-        <h3 class="bg-success rounded text-white p-1">{{ session('created') }}</h3>
-    @endif
-
+    <h1>Thrashed</h1>
     <table>
         <thead>
             <tr>
@@ -66,6 +48,5 @@
 
         </tbody>
     </table>
-    {{ $users->links('vendor.pagination.simple-bootstrap-5') }}
 
 @endsection
