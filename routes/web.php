@@ -29,5 +29,10 @@ Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'e
 Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy'); */
 
-    Route::get('/users/trash', [App\Http\Controllers\UserController::class, 'trash'])->name('user.trash');
+    Route::get('/users/trash', [App\Http\Controllers\UserController::class, 'trash'])
+        ->name('user.trash');
+    Route::get('/users/{id}/restore', [App\Http\Controllers\UserController::class, 'restore'])
+        ->name('user.restore');
+    Route::delete('/users/{id}/force-delete', [App\Http\Controllers\UserController::class, 'forceDelete'])
+        ->name('users.forceDelete');
     Route::resource('/users', App\Http\Controllers\UserController::class);

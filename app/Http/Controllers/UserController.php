@@ -178,4 +178,23 @@ class UserController extends Controller
         $users = User::onlyTrashed()->get();
         return view('users.trash', compact('users'));
     }
+
+
+    public function restore($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+        return redirect()->back()->with([
+            'userRestored' => "L'utente $user->name è stato ripristinato"
+        ]);
+    }
+
+    public function forceDelete($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->forceDelete();
+        return redirect()->back()->with([
+            'forceDelete' => "L'utente $user->name è stato eliminato permanentemente"
+        ]);
+    }
 }
