@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//$ Rotta di base
+//, Rotta di base
 
 /* Route::get('/', function (){
     return view('welcome');
 }); */
 
 
-//$ Rotta che ritorna valori
+//, Rotta che ritorna valori
 /* Route::get('/first-route', function () {
     return "<h1>Prima rotta</h1>";
 }); */
@@ -28,11 +28,15 @@ use Illuminate\Support\Facades\Route;
 /* Route::get('/first-route', fn() => '<h1>Ciao</h1>'); */
 
 
-//$ Nominare le rotte
-
-
-/* Route::get('/prima', fn() => 'Prima rotta attivata<br>')->name('first');
+//, Rotte nominate
+/* Route::get('/first', fn() => 'Prima rotta attivata<br>')->name('first');
 Route::get('/second', fn() => redirect()->route('first')); */
+
+/* Route::get('/blog', fn() => '<h1>Pagina Blog Principale</h1>')->name('blog.home');
+Route::get('/blog/articles', fn() => '<h1>Lista articoli blog</h1>')->name('blog.articles');
+Route::get('/blog/categories', fn() => '<h1>Lista categorie blog</h1>')->name('blog.categories');
+Route::get('/blog/tags', fn() => '<h1>Lista tag blog</h1>')->name('blog.tags');
+Route::get('/', fn() => redirect()->route('blog.home')); */
 
 
 
@@ -43,19 +47,19 @@ Route::get('/second', fn() => redirect()->route('first')); */
 }); */
 
 
-//$ Ritornare il parametro rotta
+//, Ritornare il parametro rotta
 /* Route::get('/second-route/{id}', function ($id) {
     return "<h1>Seconda rotta, con parametro \$id: $id</h1>";
 }); */
 
 
-//$ Ritornare più parametri
+//, Ritornare più parametri
 /* Route::get('/third-route/{id}/user/{username}', function ($id, $username) {
     return "<h1>Terza rotta, con parametro $id dell'utente $username</h1>";
 }); */
 
 
-//$ Parametri vincolati
+//, Parametri vincolati
 /* Route::get('/articoli/{id}', function ($id) {
     return 'Articolo numero: ' . $id;
 })->where('id', '[\w-]+'); */
@@ -71,7 +75,7 @@ Route::get('/second', fn() => redirect()->route('first')); */
 
 
 
-//$ Parametri dinamici opzionali
+//, Parametri dinamici opzionali
 
 /* Route::get('/articoli/{id?}', function ($id) {
     return 'Articolo numero: ' . $id;
@@ -88,7 +92,7 @@ Route::get('/second', fn() => redirect()->route('first')); */
  */
 
 
-//$ Tipizzazioni PHP
+//, Tipizzazioni PHP
 
 /* Route::get('/articoli/{id?}/categoria/{categoria?}',
     function (int $id = 1, string $categoria = 'casual') {
@@ -109,7 +113,7 @@ Route::get('/second', fn() => redirect()->route('first')); */
 
 
 
-//$ Inserire dei dati in una view
+//, Inserire dei dati in una view
 
 /* Route::get('view', function () {
     return view('app', [
@@ -121,7 +125,7 @@ Route::get('/second', fn() => redirect()->route('first')); */
  */
 
 
-//$ Ritornare un parametro in una view
+//, Ritornare un parametro in una view
 /* Route::get('/articoli/{id?}/categoria/{categoria?}',
 function (int $id = 10, string $categoria = 'senza categoria') {
     return view('app', [
@@ -138,7 +142,7 @@ Route::get('slug/{slug}', [App\Http\Controllers\FirstController::class, 'slug'])
 Route::get('view', [App\Http\Controllers\FirstController::class, 'view']); */
 
 
-//$ View Controllers
+//, View Controllers
 /*
 Route::get('home', [App\Http\Controllers\PageController::class, 'home']);
 Route::get('about', [App\Http\Controllers\PageController::class, 'about']);
@@ -148,13 +152,13 @@ Route::get('contacts', [App\Http\Controllers\PageController::class, 'contacts'])
 
 //% Raggruppare le rotte
 
-    use App\Http\Controllers\Admin\AdminController;
-    //Route::group(['prefix' => 'admin'], function () {
-    Route::prefix('admin')->group(function () {
-        Route::get('dashboard', [AdminController::class, 'dashboard'])
-            ->name('admin.dashboard');
-        Route::get('staff', [AdminController::class, 'staff'])
-            ->name('admin.staff');
-        Route::get('customers', [AdminController::class, 'customers'])
-            ->name('admin.customers');
-    });
+use App\Http\Controllers\Admin\AdminController;
+//Route::group(['prefix' => 'admin'], function () {
+Route::prefix('admin')->group(function () {
+    Route::get('dashboard', [AdminController::class, 'dashboard'])
+        ->name('admin.dashboard');
+    Route::get('staff', [AdminController::class, 'staff'])
+        ->name('admin.staff');
+    Route::get('customers', [AdminController::class, 'customers'])
+        ->name('admin.customers');
+});
