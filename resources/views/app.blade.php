@@ -12,6 +12,6 @@ Categoria: <?php echo $categoria ?><br>
 <?php } ?>
 </ul> --}}
 
-{{-- <h3>Sei nella vista app.blade.php</h3>
+<h3>Sei nella vista app.blade.php</h3>
 <?php echo $saluta ?>
- --}}
+

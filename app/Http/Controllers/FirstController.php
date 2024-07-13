@@ -15,8 +15,7 @@ class FirstController extends Controller
                 <p>Slug catturato: $slug</p>");
     }
 
-    public function view() {
-        //return view('app');
+    public function showHomepage() {
         return view('app', ['saluta' => 'Ciao a tutti!']);
     }
 

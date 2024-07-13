@@ -11,13 +11,19 @@ class PageController extends Controller
         ['title' => 'About', 'description' => 'Riguardo a questo sito...'],
         ['title' => 'Contacts', 'description' => 'Entra in contatto con noi.'],
     ];
+
+
     public function home(){
         return view('home', $this->data[0]);
     }
+
+
     public function about(){
         $data = $this->data[1];
         return view('about', compact('data'));
     }
+
+
     public function contacts(){
         $data = $this->data[2];
         return view('contacts')->with('data', $data);
