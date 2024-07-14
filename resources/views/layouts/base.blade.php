@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @include('libs.bootstrap')
     @stack('css')
+    @stack('scripts')
     <title>@yield('title', 'Titolo di default')</title>
 </head>
 {{-- <title>@section('title') Titolo di default @show</title> --}}
 
 <body>
     <header>
-
         @include('partials.navbar')
         @include('partials.news', [
             'news' => 'News personalizzata',

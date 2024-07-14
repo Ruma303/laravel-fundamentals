@@ -31,5 +31,4 @@ Route::get('/', function () {
 
 Route::get('hello', fn() => 'Hello, World!')->name('hello');
 Route::get('ciao', fn() => view('ciao'));
-
-
+Route::get('about', fn() => view('about'));

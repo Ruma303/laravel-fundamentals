@@ -1,297 +1,325 @@
-    {{-- <?php echo '<h1>Ciao da app.blade.php</h1>'; ?> --}}
+{{-- <?php echo '<h1>Ciao da app.blade.php</h1>'; ?> --}}
 
 
-    {{-- % Mustache Syntax --}}
+{{-- % Mustache Syntax --}}
 
-    {{-- , Interpolazione di variabili PHP --}}
-    {{-- * Blade --}}
-    {{-- <p>Mi chiamo {{ $name }} e ho {{ $age }} anni.</p> --}}
-    {{-- . PHP --}}
-    {{-- <?= '<p>Mi chiamo ' . $name . ' e ho ' . $age . ' anni.</p><br>' ?>
-    <p>Mi chiamo <?= $name ?> e ho <?= $age ?> anni.</p>
-    <p>Mi chiamo <?php echo $name; ?> e ho <?php echo $age; ?> anni.</p> --}}
-
-
-    {{-- , Escape codice JavaScript --}}
-    {{-- {{ $script }} --}}
-    {{-- <?php echo htmlentities($script); ?> --}}
-
-    {{-- ! Codice JavaScript Eseguito --}}
-    {{-- {!! $script !!} --}}
-    {{-- <?= $script ?> --}}
-
-    {{-- <p>{{ strip_tags($script) }}</p> --}}
+{{-- , Interpolazione di variabili PHP --}}
+{{-- * Blade --}}
+{{-- <p>Mi chiamo {{ $name }} e ho {{ $age }} anni.</p> --}}
+{{-- . PHP --}}
+{{-- <?= '<p>Mi chiamo ' . $name . ' e ho ' . $age . ' anni.</p><br>' ?>
+<p>Mi chiamo <?= $name ?> e ho <?= $age ?> anni.</p>
+<p>Mi chiamo <?php echo $name; ?> e ho <?php echo $age; ?> anni.</p> --}}
 
 
-    {{-- , Commenti --}}
-    {{--
-        Commenti
-        multi
-        linea
-    --}}
+{{-- , Escape codice JavaScript --}}
+{{-- {{ $script }} --}}
+{{-- <?php echo htmlentities($script); ?> --}}
+
+{{-- ! Codice JavaScript Eseguito --}}
+{{-- {!! $script !!} --}}
+{{-- <?= $script ?> --}}
+
+{{-- <p>{{ strip_tags($script) }}</p> --}}
 
 
-    {{-- , Esecuzione Codice PHP --}}
-    {{-- <p> {{ 2 * 2 === 4 ? 'Ciao' : 'Arrivederci' }} </p>
-    <p> {{ date('Y') }} </p> --}}
+{{-- , Commenti --}}
+{{--
+    Commenti
+    multi
+    linea
+--}}
 
 
-    {{-- , Utilizzo di funzioni helper di Laravel --}}
-    {{-- <a href={{ route('hello') }}>Vai alla pagina Hello World</a> --}}
+{{-- , Esecuzione Codice PHP --}}
+{{-- <p> {{ 2 * 2 === 4 ? 'Ciao' : 'Arrivederci' }} </p>
+<p> {{ date('Y') }} </p> --}}
 
 
-    {{-- , Ignorare l'interpolazione --}}
-    {{-- @{{ $name }} : {{ $name }} --}}
-
-    {{-- , Creare Variabili --}}
-    {{-- {{ $x = 5 }} {{ $x }} --}}
+{{-- , Utilizzo di funzioni helper di Laravel --}}
+{{-- <a href={{ route('hello') }}>Vai alla pagina Hello World</a> --}}
 
 
+{{-- , Ignorare l'interpolazione --}}
+{{-- @{{ $name }} : {{ $name }} --}}
 
-
-    {{-- % Direttive Blade --}}
-
-    {{-- , Ignorare le direttive Blade con @ --}}
-    {{-- @@if() --}}
+{{-- , Creare Variabili --}}
+{{-- {{ $x = 5 }} {{ $x }} --}}
 
 
 
-    {{-- , @php --}}
-    {{-- @php
-        $x = 5;
-        $y = 2;
-        echo "\$x: $x <br>\$y: $y";
-    @endphp --}}
-    {{-- {{ $x, $y }}; --}}
 
+{{-- % Direttive Blade --}}
 
-    {{-- , @once --}}
-
-    {{-- @once
-        <script src="https://example.com/script.js"></script>
-    @endonce --}}
-
-
-    {{-- , @dump, @dd --}}
-    {{-- @dump($items)
-    <p>Codice dopo eseguito.</p>
-
-    @dd($items)
-    <p>Codice dopo non eseguito.</p> --}}
+{{-- , Ignorare le direttive Blade con @ --}}
+{{-- @@if() --}}
 
 
 
-    {{-- , @if, @elseif, @else --}}
-    {{-- @if ($age >= 18)
+{{-- , @php --}}
+{{-- @php
+    $x = 5;
+    $y = 2;
+    echo "\$x: $x <br>\$y: $y";
+@endphp --}}
+{{-- {{ $x, $y }}; --}}
+
+
+{{-- , @once --}}
+
+{{-- @once
+    <script src="https://example.com/script.js"></script>
+@endonce --}}
+
+
+{{-- , @dump, @dd --}}
+{{-- @dump($items)
+<p>Codice dopo eseguito.</p>
+
+@dd($items)
+<p>Codice dopo non eseguito.</p> --}}
+
+
+
+{{-- , @if, @elseif, @else --}}
+{{-- @if ($age >= 18)
+    <p>Sono maggiorenne</p>
+@elseif ($name === "Matteo")
+    <p>Ciao Matteo</p>
+@else
+    <p>Sono minorenne</p>
+@endif --}}
+
+
+
+{{-- , @switch, @case, @break, @default --}}
+{{-- @switch($age)
+    @case($age >= 18)
         <p>Sono maggiorenne</p>
-    @elseif ($name === "Matteo")
-        <p>Ciao Matteo</p>
-    @else
+        @break
+    @case($age < 18)
         <p>Sono minorenne</p>
-    @endif --}}
+        @break
+    @default
+        <p>Errore</p>
+@endswitch --}}
 
 
 
-    {{-- , @switch, @case, @break, @default --}}
-    {{-- @switch($age)
-        @case($age >= 18)
-            <p>Sono maggiorenne</p>
-            @break
-        @case($age < 18)
-            <p>Sono minorenne</p>
-            @break
-        @default
-            <p>Errore</p>
-    @endswitch --}}
+{{-- , @unless --}}
+{{-- @if ($age >= 18)
+    <p>Sei maggiorenne</p>
+@endif --}}
+
+{{-- @unless ($age <= 18)
+    <p>Sei minorenne</p>
+@endunless --}}
 
 
-
-    {{-- , @unless --}}
-    {{-- @if ($age >= 18)
-        <p>Sei maggiorenne</p>
-    @endif --}}
-
-    {{-- @unless ($age <= 18)
-        <p>Sei minorenne</p>
-    @endunless --}}
+{{-- , @for --}}
+{{-- @for ($i = 1; $i < 10; $i++)
+    @continue($i === 3)
+    <p>Iterazione {{ $i }}</p>
+    @break($i === 5)
+@endfor --}}
 
 
-    {{-- , @for --}}
-    {{-- @for ($i = 1; $i < 10; $i++)
-        @continue($i === 3)
-        <p>Iterazione {{ $i }}</p>
-        @break($i === 5)
-    @endfor --}}
+{{-- , @while --}}
+{{-- @php $i = 0; @endphp
+@while ($i < count($items))
+    <p>{{ $items[$i] }}</p>
+    @php $i++; @endphp
+@endwhile
+--}}
 
 
-    {{-- , @while --}}
-    {{-- @php $i = 0; @endphp
-    @while ($i < count($items))
-        <p>{{ $items[$i] }}</p>
-        @php $i++; @endphp
-    @endwhile
-    --}}
+{{-- , @foreach --}}
+{{-- <ul>
+    @foreach ($items as $item)
+    <li>Articolo: {{ $item }}</li>
+    @endforeach
+</ul> --}}
 
 
-    {{-- , @foreach --}}
-    {{-- <ul>
+{{-- , loop --}}
+{{-- <ul>
+    @foreach ($items as $item)
+    <li>Indice: {{ $loop->index }}</li>
+    <li>Iterazione numero: {{ $loop->iteration }}</li>
+    <li>Iterazioni rimanenti: {{ $loop->remaining }}</li>
+    <li>Num totale: {{ $loop->count }}</li>
+    <li>Prima iterazione: {{ $loop->first }}</li>
+    <li>Ultima iterazione: {{ $loop->last }}</li>
+    <li>Iterazione Pari: {{ $loop->even }}</li>
+    <li>Iterazione Dispari: {{ $loop->odd }}</li>
         @foreach ($items as $item)
-        <li>Articolo: {{ $item }}</li>
+        <li>Ti trovi nel ciclo interno: {{ $loop->depth }}</li>
         @endforeach
-    </ul> --}}
-
-
-    {{-- , loop --}}
-    {{-- <ul>
-        @foreach ($items as $item)
-        <li>Indice: {{ $loop->index }}</li>
-        <li>Iterazione numero: {{ $loop->iteration }}</li>
-        <li>Iterazioni rimanenti: {{ $loop->remaining }}</li>
-        <li>Num totale: {{ $loop->count }}</li>
-        <li>Prima iterazione: {{ $loop->first }}</li>
-        <li>Ultima iterazione: {{ $loop->last }}</li>
-        <li>Iterazione Pari: {{ $loop->even }}</li>
-        <li>Iterazione Dispari: {{ $loop->odd }}</li>
-            @foreach ($items as $item)
-            <li>Ti trovi nel ciclo interno: {{ $loop->depth }}</li>
-            @endforeach
-            <li>Ti trovi nel ciclo esterno: {{ $loop->parent }}</li>
-        @endforeach
-    </ul> --}}
+        <li>Ti trovi nel ciclo esterno: {{ $loop->parent }}</li>
+    @endforeach
+</ul> --}}
 
 
 
-    {{-- , @forelese, @empty --}}
-    {{-- @forelse($items as $item)
-        <li>Articolo {{ $loop->iteration }}: {{ $item }}</li>
-    @empty
-        <strong>Non sono presenti articoli</strong>
-    @endforelse --}}
+{{-- , @forelese, @empty --}}
+{{-- @forelse($items as $item)
+    <li>Articolo {{ $loop->iteration }}: {{ $item }}</li>
+@empty
+    <strong>Non sono presenti articoli</strong>
+@endforelse --}}
 
 
 
-    {{-- , @isset, @empty --}}
-    {{-- @isset($name)
-        <p>La variabile $name è definita</p>
-    @endisset --}}
+{{-- , @isset, @empty --}}
+{{-- @isset($name)
+    <p>La variabile $name è definita</p>
+@endisset --}}
 
-    {{-- @empty(!$items)
-        @foreach ($items as $item)
-            <p>{{ $item }}</p>
-        @endforeach
-    @endempty --}}
-
-
-    {{-- , @production, @env() --}}
-
-    {{-- @env(['production', 'local'])
-        <h2>Homepage</h2>
-    @endenv
-
-    @env('local')
-        <p>Sei in locale</p>
-    @endenv
-
-    @env('testing')
-        <p>Sei in testing</p>
-    @endenv
-
-    @production
-        <p>Sei in produzione</p>
-    @endproduction --}}
+{{-- @empty(!$items)
+    @foreach ($items as $item)
+        <p>{{ $item }}</p>
+    @endforeach
+@endempty --}}
 
 
-    {{-- , @class, @style --}}
-    {{-- @php
-        $isActive = false;
-        $hasError = true;
-    @endphp
+{{-- , @production, @env() --}}
 
-    <div @class([
-        'container',
-        'bg-primary' => $isActive,
-        'text-white'
-    ])>
-        <p @style([
-            'background-color: red' => $hasError,
-            'color: white' => $isActive ?? 'color: black',
-            'padding: 10px',
-            'font-weight: bold' => $name === 'Matteo' ?? 'font-weight: normal',
-        ])>{{ $name }}</p>
-    </div> --}}
+{{-- @env(['production', 'local'])
+    <h2>Homepage</h2>
+@endenv
+
+@env('local')
+    <p>Sei in locale</p>
+@endenv
+
+@env('testing')
+    <p>Sei in testing</p>
+@endenv
+
+@production
+    <p>Sei in produzione</p>
+@endproduction --}}
 
 
-    {{-- , @checked(), @selected(), @disabled(), @readonly(), @required() --}}
-    {{-- <label>Ci sono le scarpe nell'array $items?</label>
-    <input type="radio" @checked(in_array("Scarpe", $items))>
+{{-- , @class, @style --}}
+{{-- @php
+    $isActive = false;
+    $hasError = true;
+@endphp
 
-    @php
-        $selected = '2';
-    @endphp
+<div @class([
+    'container',
+    'bg-primary' => $isActive,
+    'text-white'
+])>
+    <p @style([
+        'background-color: red' => $hasError,
+        'color: white' => $isActive ?? 'color: black',
+        'padding: 10px',
+        'font-weight: bold' => $name === 'Matteo' ?? 'font-weight: normal',
+    ])>{{ $name }}</p>
+</div> --}}
 
-    <select>
-        <option value="1" @selected($selected)>Uno</option>
-        <option value="2" @selected($selected)>Due</option>
-        <option value="3" @selected($selected)>Tre</option>
-    </select>
 
-    @php
-        $disabled = '2';
-    @endphp
+{{-- , @checked(), @selected(), @disabled(), @readonly(), @required() --}}
+{{-- <label>Ci sono le scarpe nell'array $items?</label>
+<input type="radio" @checked(in_array("Scarpe", $items))>
 
-    <select>
-        <option value="1" @disabled($disabled)>Uno</option>
-        <option value="2" @disabled($disabled)>Due</option>
-        <option value="3" @disabled($disabled)>Tre</option>
-    </select>
+@php
+    $selected = '2';
+@endphp
 
-    <input type="text" @readonly($name === 'Matteo')>
+<select>
+    <option value="1" @selected($selected)>Uno</option>
+    <option value="2" @selected($selected)>Due</option>
+    <option value="3" @selected($selected)>Tre</option>
+</select>
 
-    <input type="text" @required($age === 28)> --}}
+@php
+    $disabled = '2';
+@endphp
+
+<select>
+    <option value="1" @disabled($disabled)>Uno</option>
+    <option value="2" @disabled($disabled)>Due</option>
+    <option value="3" @disabled($disabled)>Tre</option>
+</select>
+
+<input type="text" @readonly($name === 'Matteo')>
+
+<input type="text" @required($age === 28)> --}}
 
 
 
 
 
-    {{-- % Ereditarietà --}}
+{{-- % Ereditarietà --}}
 
 
-    {{-- , @extends --}}
-
-    @extends('layouts.base')
-
-
-    {{-- , @section --}}
-    {{-- @section('title', 'Blade Tutorial') --}}
-
-    {{-- @section('content')
-        <h3>Siamo in app.blade.php</h3>
-    @endsection --}}
+{{-- , @extends --}}
+{{-- @extends('layouts.base') --}}
 
 
 
+{{-- , @section --}}
+{{-- @section('title', 'Blade Tutorial') --}}
 
-    {{-- , @show Footer --}}
-
-    {{-- @section('footer')
-        <p>Footer personalizzato</p>
-    @endsection --}}
-
-
-    {{-- , @parent --}}
-
-    {{-- @section('aside')
-        <p>Contenuto in app.blade.php</p>
-        @parent
-    @endsection --}}
+{{-- @section('content')
+    <h3>Siamo in app.blade.php</h3>
+@endsection --}}
 
 
+{{-- , @push, @prepend, @pushOnce, @prependOnce --}}
+{{-- @once
+    @push('scripts')
+        <script>
+            console.log('Questo sarà il secondo console.log()');
+        </script>
+    @endpush
+@endonce
 
-    {{-- , @stop --}}
+@once
+    @prepend('scripts')
+        <script>
+            console.log('Questo sarà il primo console.log()');
+        </script>
+    @endprepend
+@endonce --}}
 
-    {{-- @section('aside')
-        <p>Sezione estesa in app.blade.php</p>
-        @parent
-        <p>Contenuto appeso alla sezione estesa</p>
-        @stop
-        <p>Testo escluso</p> --}}
+{{-- @pushOnce('scripts')
+        <script>
+            console.log('Questo sarà il secondo console.log()');
+        </script>
+@endpushOnce
+
+@prependOnce('scripts')
+        <script>
+            console.log('Questo sarà il primo console.log()');
+        </script>
+@endprependOnce --}}
+
+
+{{-- , @show Footer --}}
+
+{{-- @section('footer')
+    <p>Footer personalizzato</p>
+@endsection --}}
+
+
+{{-- , @parent --}}
+
+{{-- @section('aside')
+    <p>Contenuto in app.blade.php</p>
+    @parent
+@endsection --}}
+
+
+
+{{-- , @stop --}}
+
+{{-- @section('aside')
+    <p>Sezione estesa in app.blade.php</p>
+    @parent
+    <p>Contenuto appeso alla sezione estesa</p>
+    @stop
+    <p>Testo escluso</p> --}}
