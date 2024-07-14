@@ -261,18 +261,15 @@
     @extends('layouts.base')
 
 
-    {{-- , @each --}}
-    {{-- @each('each', $items, 'item', 'empty') --}}
-
-
     {{-- , @section --}}
     {{-- @section('title', 'Blade Tutorial') --}}
 
     {{-- @section('content')
         <h3>Siamo in app.blade.php</h3>
-    @endsection
-    --}}
-    
+    @endsection --}}
+
+
+
 
     {{-- , @show Footer --}}
 
