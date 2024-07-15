@@ -257,16 +257,16 @@
 
 
 {{-- , @extends --}}
-{{-- @extends('layouts.base') --}}
+@extends('layouts.base')
 
 
 
 {{-- , @section --}}
-{{-- @section('title', 'Blade Tutorial') --}}
+@section('title', 'Blade Tutorial')
 
-{{-- @section('content')
+@section('content')
     <h3>Siamo in app.blade.php</h3>
-@endsection --}}
+@endsection
 
 
 {{-- , @push, @prepend, @pushOnce, @prependOnce --}}

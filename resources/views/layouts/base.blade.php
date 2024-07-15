@@ -14,11 +14,11 @@
 
 <body>
     <header>
-        @include('partials.navbar')
+        {{-- @include('partials.navbar')
         @include('partials.news', [
             'news' => 'News personalizzata',
             'class' => 'bg-info text-white p-2',
-        ])
+        ]) --}}
 
         {{--  @includeIf('partials.navbar') --}}
 
@@ -31,10 +31,35 @@
                 'partials._buttonBlue',
                 ]) --}}
 
+        {{-- , Includere componenti in base alla rotta --}}
+
+        @if (Request::is('about'))
+            @include('partials.news', [
+                'news' => 'News personalizzata',
+                'class' => 'bg-info text-white p-2',
+            ])
+        @endif
     </header>
 
+    <main class="container p-4">
+        @yield('content')
+        {{-- @php
+            $isHomePage = request()->is('/');
+        @endphp
+        @if ($isHomePage)
+            @include('partials._buttonRed')
+        @endif
 
-    <div class="container mx-0">
+        @php
+            $isUserPage = request()->is('users/*');
+        @endphp
+        @if ($isUserPage)
+            @include('partials._buttonBlue')
+        @endif --}}
+    </main>
+
+
+    {{-- <div class="container mx-0">
         <h1>Siamo in base.blade.php</h1>
         @hasSection('content')
             <div class="container">
@@ -47,7 +72,7 @@
                 Non c'è nessun contenuto
             </p>
         @endif
-    </div>
+    </div> --}}
 
 
     {{-- , @each --}}

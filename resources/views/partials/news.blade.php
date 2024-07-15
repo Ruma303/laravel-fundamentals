@@ -1,1 +1,1 @@
-<p class="{{ $class}}">{{ $news }}</p>
+<p class="{{ $class }}">{{ $news }}</p>

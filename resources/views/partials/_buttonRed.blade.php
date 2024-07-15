@@ -1,1 +1,1 @@
-<button style="background: red">Bottone</button>
+<button class="bg-danger text-white">Bottone</button>

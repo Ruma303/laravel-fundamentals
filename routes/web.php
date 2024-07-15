@@ -32,3 +32,7 @@ Route::get('/', function () {
 Route::get('hello', fn() => 'Hello, World!')->name('hello');
 Route::get('ciao', fn() => view('ciao'));
 Route::get('about', fn() => view('about'));
+
+    Route::get('users/{name}', function($name) {
+        return view('users', ['name' => $name]);
+    });
