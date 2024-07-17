@@ -25,18 +25,18 @@ class UserController extends Controller
     /* public function store(Request $request)
     {
         //dd($request);
-        //$ Creazione nuovo record
+        //,Creazione nuovo record
         $user = new User();
 
-        //$ Assegnazione dati ai singoli campi
+        //,Assegnazione dati ai singoli campi
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
 
-        //$ Salvataggio ed invio al database del nuovo record
+        //,Salvataggio ed invio al database del nuovo record
         $user->save();
 
-        //$ Reindirizzamento verso l'index degli users
+        //,Reindirizzamento verso l'index degli users
         return redirect('/users')->with([
             'created' => 'User {$user->name} has been created.'
         ]);
@@ -45,13 +45,13 @@ class UserController extends Controller
     //* Variante store() 1
     /* public function store(Request $request)
     {
-        //$ Recupero tutti i dati della $request
+        //,Recupero tutti i dati della $request
         $userData = $request->all();
 
-        //$ Creazione nuovo record
+        //,Creazione nuovo record
         $newUser = new User();
 
-        //$ Assegnazione nuovi dati
+        //,Assegnazione nuovi dati
         $newUser->name = $userData['name'];
         $newUser->email = $userData['email'];
         $newUser->password = $userData['password'];
@@ -63,7 +63,7 @@ class UserController extends Controller
     //* Variante store() 2
     /* public function store(Request $request)
     {
-        //$ Assegnazione nuovi dati dalla $request
+        //,Assegnazione nuovi dati dalla $request
         $newUser = new User();
         $newUser->name = $request['name'];
         $newUser->email = $request['email'];
@@ -123,15 +123,15 @@ class UserController extends Controller
 
     /* public function update(Request $request, User $user)
     {
-        //$ Sostituzione dei nuovi dati nell'istanza $user
+        //,Sostituzione dei nuovi dati nell'istanza $user
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
 
-        //$ Invio dei dati al DB per aggiornarli
+        //,Invio dei dati al DB per aggiornarli
         $user->update();
 
-        //$ Reindirizzamento alla vista users.show con i dati aggiornati
+        //,Reindirizzamento alla vista users.show con i dati aggiornati
         return redirect()->route('users.show', compact('user'));
         //return redirect('users/' . $user->id)->with(compact('user'));
     } */
@@ -143,10 +143,10 @@ class UserController extends Controller
         $user->email = $request['email'];
         $user->password = $request['password'];
 
-        //$ Invio dei dati al DB per aggiornarli
+        //,Invio dei dati al DB per aggiornarli
         $user->update();
 
-        //$ Reindirizzamento alla vista users.show con i dati aggiornati
+        //,Reindirizzamento alla vista users.show con i dati aggiornati
         return redirect()->route('users.show', compact('user'));
     } */
 
