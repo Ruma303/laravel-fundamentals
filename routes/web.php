@@ -20,20 +20,27 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
     //Route::resource('users', UserController::class);
 
     /* Route::resource('user', UserController::class)
-        ->parameter('user', 'utente'); */
+        ->names([
+            'create' => 'crea',
+            'show' => 'user.mostra',
+        ]); */
 
-    Route::resource('users.posts', PostController::class)
-        ->parameters([
+        //->parameter('user', 'utente');
+
+    //Route::resource('users.posts', PostController::class);
+
+
+        /* ->parameters([
             'users' => 'utente',
             'posts' => 'articolo',
-        ]);
+        ]); */
 
         //->names('users');
         //->except(['store', 'edit']);
         //->only(['index', 'create', 'store']);
 
         //->names('users');
-        
+
     /* Route::resources([
         'photos' => UserController::class,
         'posts' => PostController::class,
