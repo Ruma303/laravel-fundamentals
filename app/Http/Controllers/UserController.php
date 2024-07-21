@@ -22,14 +22,17 @@ class UserController extends Controller
     }
 
 
-    /* public function store(Request $request)
+    public function store(Request $request)
     {
         //dd($request);
         //,Creazione nuovo record
         $user = new User();
 
         //,Assegnazione dati ai singoli campi
+
         $user->name = $request->input('name');
+        // $user->name = $request->name;
+
         $user->email = $request->input('email');
         $user->password = $request->input('password');
 
@@ -40,7 +43,7 @@ class UserController extends Controller
         return redirect('/users')->with([
             'created' => 'User {$user->name} has been created.'
         ]);
-    } */
+    }
 
     //* Variante store() 1
     /* public function store(Request $request)
