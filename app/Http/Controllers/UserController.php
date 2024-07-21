@@ -173,6 +173,13 @@ class UserController extends Controller
     }
 
 
+    public function getUserVips()
+    {
+        $users = User::where('is_vip', true)->get();
+        return view('users.vips', compact('users'));
+    }
+
+
     public function trash()
     {
         $users = User::onlyTrashed()->get();

@@ -1,13 +1,13 @@
-<?php
+    <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\PostController;
+    use Illuminate\Support\Facades\Route;
+    use Illuminate\Http\Request;
+    use App\Http\Controllers\HomeController;
+    use App\Http\Controllers\UserController;
+    use Illuminate\Support\Facades\Redirect;
+    use App\Http\Controllers\PostController;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     /* Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
@@ -25,26 +25,32 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
             'show' => 'user.mostra',
         ]); */
 
-        //->parameter('user', 'utente');
+    //->parameter('user', 'utente');
 
-    //Route::resource('users.posts', PostController::class);
+    Route::resource('users', UserController::class);
+    //Route::get('/users/vips', [UserController::class, 'getUserVips'])->name('users.vips');
 
+    /* ->parameters([
+        'users' => 'utente',
+        'posts' => 'articolo',
+    ]); */
 
-        /* ->parameters([
-            'users' => 'utente',
-            'posts' => 'articolo',
-        ]); */
+    //->names('users');
+    //->except(['store', 'edit']);
+    //->only(['index', 'create', 'store']);
 
-        //->names('users');
-        //->except(['store', 'edit']);
-        //->only(['index', 'create', 'store']);
-
-        //->names('users');
+    //->names('users');
+    //->shallow();
 
     /* Route::resources([
         'photos' => UserController::class,
         'posts' => PostController::class,
     ]); */
+
+    /*  Route::resource('users.posts', PostController::class)->scoped([
+        'post' => 'slug'
+    ]); */
+
 
     /* Route::get('/users/trash', [UserController::class, 'trash'])->name('user.trash');
     Route::get('/users/{id}/restore', [UserController::class, 'restore'])->name('user.restore');
