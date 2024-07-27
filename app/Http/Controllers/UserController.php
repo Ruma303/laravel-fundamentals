@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    //$users = User::all();
 
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::all();
+        //$users = User::paginate(5);
         return view('users.index', compact('users'));
     }
 
@@ -114,6 +114,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        //dd($user);
         return view('users.show', compact('user'));
     }
 
@@ -170,10 +171,12 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index')->with([
-            'success' => "User {$user->name} has been deleted."
-        ]);
+        return to_route('users.index');
     }
+
+    /* return redirect()->route('users.index')->with([
+        'success' => "User {$user->name} has been deleted."
+    ]); */
 
 
     public function getUserVips()

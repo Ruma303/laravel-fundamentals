@@ -4,13 +4,13 @@
 
 @section('content')
 
-    <div class="d-flex gap-2">
+    <div class="d-flex gap-4">
         <button class="btn btn-success" style="width: fit-content;">
             <a href="{{ route('users.create') }}" class="text-decoration-none text-white">Create a new user</a>
         </button>
-        <button class="btn btn-warning" style="width: fit-content;">
+        {{-- <button class="btn btn-warning" style="width: fit-content;">
             <a href="{{ route('user.trash') }}" class="text-decoration-none text-black">Thrashed</a>
-        </button>
+        </button> --}}
     </div>
 
     <h1>Index Page</h1>
@@ -55,7 +55,9 @@
                         </a>
                     </td>
                     <td>
-                        <form method="POST" action="{{ route('users.destroy', ['user' => $user]) }}">
+                        <form method="POST" action="{{ route('users.destroy', [
+                        'user' => $user
+                        ]) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -66,6 +68,8 @@
 
         </tbody>
     </table>
-    {{ $users->links('vendor.pagination.simple-bootstrap-5') }}
+
+    {{-- % Paginazione --}}
+    {{-- {{ $users->links('vendor.pagination.simple-bootstrap-5') }} --}}
 
 @endsection
