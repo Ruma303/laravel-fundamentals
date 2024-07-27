@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -22,7 +25,7 @@ class UserController extends Controller
     }
 
 
-    public function store(Request $request)
+    /* public function store(Request $request)
     {
         //dd($request);
         //,Creazione nuovo record
@@ -44,7 +47,25 @@ class UserController extends Controller
         return redirect('/users')->with([
             'user_created' => "User {$user->name} has been created."
         ]);
-    }
+    } */
+
+    //% Mass assignment create()
+
+    /* public function store(Request $request)
+    {
+        //* Creazione del nuovo utente utilizzando il mass assignment
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        //* Reindirizzamento verso l'index degli users
+        return redirect('/users')->with([
+            'created' => "User {$user->name} has been created."
+        ]);
+    } */
+
 
     //* Variante store() 1
     /* public function store(Request $request)
@@ -77,22 +98,6 @@ class UserController extends Controller
         return redirect('/users');
     } */
 
-    //% Mass assignment create()
-    /* public function store(Request $request)
-    {
-        //* Creazione del nuovo utente utilizzando il mass assignment
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-        ]);
-
-        //* Reindirizzamento verso l'index degli users
-        return redirect('/users')->with([
-            'created' => "User {$user->name} has been created."
-        ]);
-    }*/
-
 
     //% Creare record con fill()
     /* public function store(Request $request)
@@ -102,8 +107,15 @@ class UserController extends Controller
         $user->fill([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'password' => Hash::make($request->input('password')),
         ]);
+
+        //* Esempio di altre operazioni
+        $user->is_vip = $request->input('is_vip', false);
+        $user->name = Str::lower($user->name);
+
+
+        //* Salvataggio del nuovo utente
         $user->save();
 
         //* Reindirizzamento alla vista index con i dati aggiornati
@@ -156,18 +168,22 @@ class UserController extends Controller
     } */
 
     //% Mass assignment update()
-    /* public function update(Request $request, User $user)
+    public function update(Request $request, User $user)
     {
         //* Aggiornamento dell'utente utilizzando il mass assignment
         $user->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
         ]);
 
         //* Reindirizzamento alla vista con i dati aggiornati
-        return redirect()->route('users.show', compact('user'));
-    } */
+        return redirect()->route('users.show', compact('user'))->with([
+            'user_updated' => "User {$user->name} has been updated."
+        ]);
+    }
+
+
 
     public function destroy(User $user)
     {
@@ -184,6 +200,53 @@ class UserController extends Controller
     {
         $users = User::where('is_vip', true)->get();
         return view('users.vips', compact('users'));
+    }
+
+
+    //, Creazione di più record
+    /* public function getOrInstantiateMultipleUsers(Request $request)
+    {
+        $users = $request->input('users');
+
+        DB::transaction(function () use ($users) {
+            foreach ($users as $userData) {
+                //* Cerca l'utente esistente o crea una nuova istanza senza salvarla
+                $user = User::firstOrNew([
+                    'email' => $userData['email']  //# Cerca per email
+                ]);
+
+                //* Controlla se l'utente è stato appena istanziato (non esiste nel DB)
+                if (!$user->exists) {
+                    $user->name = $userData['name'];
+                    $user->password = Hash::make($userData['password']);
+                    $user->save();  //# Salva solo se l'utente è nuovo
+                }
+            }
+        });
+
+        return redirect()->route('users.index');
+    } */
+
+
+    //, Creazione di più record con upsert()
+
+    public function getOrInstantiateMultipleUsers(Request $request)
+    {
+        $users = $request->input('users');
+        $data = [];
+
+        foreach ($users as $userData) {
+            $data[] = [
+                'name' => $userData['name'],
+                'email' => $userData['email'],
+                //? Assumendo che vogliamo resettare la password ogni volta
+                'password' => Hash::make($userData['password']),
+            ];
+        }
+
+        User::upsert($data, ['email'], ['name', 'password']);
+
+        return redirect()->route('users.index')->with('success', 'Users have been updated or instantiated.');
     }
 
 
