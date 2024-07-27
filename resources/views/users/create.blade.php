@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('title', 'Create View')
 @section('content')
     <h1>Create Page</h1>

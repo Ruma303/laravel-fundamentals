@@ -40,8 +40,9 @@ class UserController extends Controller
         $user->save();
 
         //,Reindirizzamento verso l'index degli users
+
         return redirect('/users')->with([
-            'created' => 'User {$user->name} has been created.'
+            'user_created' => "User {$user->name} has been created."
         ]);
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title', 'Users index')
 
@@ -18,8 +18,9 @@
         <h3 class="bg-info rounded">{{ session('success') }}</h3>
     @endif
 
-    @if (session('created'))
-        <h3 class="bg-success rounded text-white p-1">{{ session('created') }}</h3>
+    @if (session('user_created'))
+        <h3 class="bg-success rounded text-white py-1 px-2">
+            {{ session('user_created') }}</h3>
     @endif
 
     <table>

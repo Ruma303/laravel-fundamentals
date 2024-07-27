@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('title', 'Show View')
 @section('content')
 <h1>{{ $user->name }} Details Page</h1>

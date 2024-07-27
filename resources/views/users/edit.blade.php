@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('title', "Edit $user->name")
 @section('content')
 <h1>Edit {{ $user->name }} data</h1>
