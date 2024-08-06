@@ -9,6 +9,8 @@
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>
 
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
             <div class="col-sm-10">
                 <input type="text"
@@ -44,3 +46,13 @@
         <button type="submit" class="btn btn-primary mb-3 mt-5">Create new user</button>
     </form>
 @endsection
+
+
+{{-- <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+ --}}
