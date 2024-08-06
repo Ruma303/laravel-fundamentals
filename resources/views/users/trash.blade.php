@@ -16,7 +16,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Password</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -27,9 +27,8 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->password }}</td>
                     <td>
-                        <a href="{{ route('user.restore', ['id' => $user->id]) }}" class="text-white text-decoration-none">
+                        <a href="{{ route('user.restore', $user->id) }}" class="text-white text-decoration-none">
                             <button class="btn btn-success">Restore</button>
                         </a>
                         {{-- <form action="{{ route('users.forceDelete', ['id' => $user->id]) }}" method="POST">
@@ -37,12 +36,12 @@
                             <button type="submit" class="btn btn-danger">Permanent delete</button>
                         </form> --}}
 
-                        <!-- % Button trigger modal -->
+                        {{-- % Button trigger modal --}}
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                            Permanent delete
+                            Permanently delete
                         </button>
 
-                        <!-- Modal -->
+                        {{-- ! Modal --}}
                         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">

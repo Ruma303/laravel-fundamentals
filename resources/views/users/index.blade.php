@@ -8,9 +8,9 @@
         <button class="btn btn-success" style="width: fit-content;">
             <a href="{{ route('users.create') }}" class="text-decoration-none text-white">Create a new user</a>
         </button>
-        {{-- <button class="btn btn-warning" style="width: fit-content;">
+        <button class="btn btn-warning" style="width: fit-content;">
             <a href="{{ route('user.trash') }}" class="text-decoration-none text-black">Thrashed</a>
-        </button> --}}
+        </button>
     </div>
 
     <h1>Index Page</h1>

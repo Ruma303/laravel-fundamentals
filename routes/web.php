@@ -27,6 +27,10 @@ use App\Http\Controllers\PostController;
 
     //->parameter('user', 'utente');
 
+    Route::get('/users/trash', [UserController::class, 'trash'])->name('user.trash');
+    Route::get('/users/{id}/restore', [UserController::class, 'restore'])->name('user.restore');
+    Route::delete('/users/{id}/force-delete', [UserController::class, 'forceDelete'])->name('users.forceDelete');
+
     Route::resource('users', UserController::class);
     //Route::get('/users/vips', [UserController::class, 'getUserVips'])->name('users.vips');
 
@@ -52,6 +56,4 @@ use App\Http\Controllers\PostController;
     ]); */
 
 
-    /* Route::get('/users/trash', [UserController::class, 'trash'])->name('user.trash');
-    Route::get('/users/{id}/restore', [UserController::class, 'restore'])->name('user.restore');
-    Route::delete('/users/{id}/force-delete', [UserController::class, 'forceDelete'])->name('users.forceDelete'); */
+
