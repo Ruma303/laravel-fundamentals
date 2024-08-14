@@ -12,7 +12,7 @@ class Book extends Model
     //protected $table = 'libri';
     //protected $primaryKey = 'book_id';
     //public $incrementing = false;
-
+    //protected $keyType = 'string';
     //public $timestamps = false;
     //protected $dateFormat = 'U';
 
